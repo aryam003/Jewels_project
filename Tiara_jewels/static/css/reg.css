@@ -1,0 +1,111 @@
+    /* General reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    /* Body styles */
+    body {
+        /* background: url('/static/image/img2.jpg') no-repeat center center/cover; */
+        
+        font-family: 'Roboto', sans-serif;
+        background-color: #f0b56d;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    
+    /* Form container */
+    .form-container {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+    }
+    
+    /* Form header */
+    h2 {
+        font-size: 26px;
+        margin-bottom: 30px;
+        color: #d1a64a;
+        font-weight: 700;
+    }
+    
+    /* Input group styles */
+    .input-group {
+        margin-bottom: 20px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        transition: border-color 0.3s ease;
+    }
+    
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #4e73df;
+        outline: none;
+    }
+    
+    input[type="submit"] {
+        background-color: #c28229;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #2e59d9;
+    }
+    
+    /* Alert box styles */
+    .alert {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+    
+    .alert button {
+        background: transparent;
+        border: none;
+        font-size: 16px;
+        color: inherit;
+        cursor: pointer;
+    }
+    
+    .alert-dismissible {
+        padding-right: 30px;
+    }
+    
+    /* Responsive styling for smaller screens */
+    @media (max-width: 500px) {
+        .form-container {
+            padding: 25px;
+            width: 90%;
+        }
+    
+        h2 {
+            font-size: 22px;
+        }
+    }
