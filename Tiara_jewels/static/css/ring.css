@@ -1,0 +1,42 @@
+        .jewelry-item {
+            border: 1px solid #4c4c4c;
+            border-radius: 8px;
+            padding: 10px;
+            /* margin-bottom: 20px; */
+            background-color :black;
+            transition: box-shadow 0.3s ease;
+        }
+        /* body{ */
+            /* background-color: #121212; */
+        /* } */
+
+        .jewelry-item:hover {
+            box-shadow: 4px 4px 8px rgba(146, 145, 145, 0.2);
+        }
+
+        .jewelry-item img {
+            width: 100%;
+            max-width: 200px;
+            height: 160px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .jewelry-item h2 {
+            font-size: 1.5rem;
+            color: whitesmoke;
+        }
+
+        .jewelry-item p {
+            font-size: 0.9rem;
+            color: whitesmoke;
+        }
+
+        .action-buttons a {
+            margin-right: 10px;
+            color: whitesmoke;
+        }
+
+        .action-buttons a.btn {
+            font-size: 1rem;
+        }

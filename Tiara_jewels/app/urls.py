@@ -9,6 +9,17 @@ urlpatterns=[
 #-------------------------------------------------------------------------------------------------------- for shop
 
     path('shop_home',views.shop_home),
+    path('add_product',views.add_product),
+    # path('edit_pro/<id>',views.edit_pro),
+    path('edit_pro/<id>/', views.edit_pro),
+    path('delete_pro/<id>/',views.delete_pro),
+
+
+    
+
+    path('rings/', views.ring_page, name='ring_page'),         
+    path('necklaces/', views.necklace_page, name='necklace_page'), 
+    # path('jewelry/<int:jewelry_id>/', views.jewelry_detail, name='jewelry_detail'),
 
 #---------------------------------------------------------------------------------------------------------for user
 
@@ -16,7 +27,5 @@ urlpatterns=[
 
 #-----------------------------------------------------------------------------------------------------------for jewels
 
-    path('rings/', views.ring_page, name='ring_page'),         # URL for Rings
-    path('necklaces/', views.necklace_page, name='necklace_page'), # URL for Necklaces
-    # path('jewelry/<int:jewelry_id>/', views.jewelry_detail, name='jewelry_detail'),
+
 ]

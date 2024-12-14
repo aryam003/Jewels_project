@@ -4,6 +4,8 @@ from . models import *
 import os
 from django.contrib.auth.models import User
 from django.contrib import messages
+# from django.shortcuts import render
+# from .models import Jewelry, JewelryType
 # Create your views here.
 
 def shop_login(req):
@@ -51,6 +53,9 @@ def register(req):
         return render(req,'register.html')
     
 
+
+    
+
  #------------------------------admin------------------------------------------------------------------------------------------
 
 
@@ -62,6 +67,59 @@ def shop_home(req):
         # return render(req,'shop/shop_home.html')
     else:
         return redirect(shop_login) 
+    
+def add_product(req):
+    if req.method=='POST':
+        name=req.POST['name']
+        description=req.POST['description']
+        material=req.POST['material']
+        price=req.POST['price']
+        weight=req.POST['weight']
+        category_name = req.POST.get('JewelryType')
+        file=req.FILES['img']
+
+        try:
+            category = JewelryType.objects.get(name=category_name)
+        except JewelryType.DoesNotExist:
+            messages.error(req, "Category does not exist!")
+            return redirect('add_pro')  
+        data= Jewelry.objects.create(name=name,description=description,material=material,price=price,weight=weight,image=file,category=category)
+        data.save()
+        return redirect(shop_home)
+    return render(req,'shop/add_pro.html')   
+
+def edit_pro(req,id):
+    pro=Jewelry.objects.get(pk=id)
+    if req.method=='POST':
+        name=req.POST['name']
+        description=req.POST['description']
+        material=req.POST['material']
+        price=req.POST['price']
+        weight=req.POST['weight']
+        category_name = req.POST.get('JewelryType')
+        file=req.FILES['img'] 
+        try:
+            category = JewelryType.objects.update(name=category_name)
+        except JewelryType.DoesNotExist:
+            messages.error(req, "Category does not exist!")
+            return redirect('add_pro')  
+        if file:
+            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,image=file,category=category)
+        else:
+            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight)
+        
+        return redirect(ring_page)
+    return render(req,'shop/edit_pro.html',{'data':pro})
+
+def delete_pro(req,id):
+    data=Jewelry.objects.get(pk=id)
+    url=data.img.url
+    url=url.split('/')[-1]
+    os.remove('media/'+url)
+    data.delete()
+    return redirect(shop_home)
+
+
     
 
 
@@ -87,22 +145,19 @@ def user_home(req):
 
 #------------------------------------------------
 
-from django.shortcuts import render
-from .models import Jewelry, JewelryType
+
 
 #  displaying all Rings
 def ring_page(request):
     ring_category = JewelryType.objects.get(name='ring') 
     rings = Jewelry.objects.filter(category=ring_category)
-    return render(request, 'jewelry/ring_page.html', {'jewelry_items': rings})
+    return render(request, 'shop/ring_page.html', {'jewelry_items': rings})
 
 #  displaying all Necklaces
 def necklace_page(request):
-    
-    necklace_category = JewelryType.objects.get(name='Necklace')
-
+    necklace_category = JewelryType.objects.get(name='necklace')
     necklaces = Jewelry.objects.filter(category=necklace_category)
-    return render(request, 'jewelry/necklace_page.html', {'jewelry_items': necklaces})
+    return render(request, 'shop/necklace_page.html', {'jewelry_items': necklaces})
 
 # displaying the details of a specific piece of jewelry
 # def jewelry_detail(request, jewelry_id):

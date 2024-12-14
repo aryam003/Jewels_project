@@ -2,25 +2,30 @@
   .background {
     top: 15px;
     position: relative;
-    background-image: url('/static/image/n4.png'); /* Replace with your own image URL */
+    background-image: url('/static/image/r2.png');
     background-size: cover;
     background-position: center;
     height: 100vh; /* Full viewport height */
     position: relative;
+    height: 400px;
 }
 
 /* Button centered over the background */
-.button-container {
+.button-container{
     position: absolute;
-    top: 30%;
-    left: 70%;
+    top: 210px;
+    left: 30%;
     transform: translate(-50%, -50%);
     text-align: center;
     /* color: rgb(20, 20, 154); */
 }
-.button-container,h1{
+.button-container{
+    top: 200px;
+    left: 10%;
     color: rgb(9, 9, 137);
+    position: absolute;
 }
 .navbar .nav_item{
     color: rgb(244, 202, 237);
 }
+

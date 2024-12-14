@@ -5,28 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static '/css/add.css' %}">
+    <!-- <link rel="stylesheet" href="{% static '/css/add.css' %}"> -->
 </head>
 <body>
-    
-    <!-- <form action="" method="post" enctype="multipart/form-data">
+
+     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="text" name="jewels_id" placeholder="jewels id">
-        <input type="text" name="category" placeholder="category">
-        <input type="text" name="jewels_name" placeholder="jewels name">
-        <input type="number" name="price" placeholder="price">
-        <input type="number" name="offer_price" placeholder="offer price">
-        <input type="text" name="description" placeholder="description">
-        <input type="file" name="img">
-        <input type="submit" value="add">
-    </form> -->
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="name" placeholder="name">
-        <input type="text" name="name" placeholder="name">
-
-
-
+        <input type="text" name="name" placeholder="name" required>
+        <input type="text" name="description" placeholder="description" required>
+        <input type="text" name="material" placeholder="material" required>
+        <input type="number" name="price" placeholder="price" required>
+        <input type="number" name="weight" placeholder="weight" required>
+        <input type="text" name="JewelryType" placeholder="category" required>
+        <input type="file" name="img" required>
+        <input type="submit" value="Add">
     </form>
     
 
