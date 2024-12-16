@@ -40,3 +40,28 @@
         .action-buttons a.btn {
             font-size: 1rem;
         }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          .card-img-top {
+            max-height: 250px;
+            object-fit: cover;
+          }
+          .card-body {
+            text-align: center;
+          }
+          .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+          }
+          .card-text {
+            font-size: 1rem;
+            color: #555;
+          }
+          .card-price {
+            font-size: 1.2rem;
+            color: #007bff;
+            font-weight: bold;
+          }

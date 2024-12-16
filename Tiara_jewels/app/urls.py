@@ -19,11 +19,15 @@ urlpatterns=[
 
     path('rings/', views.ring_page, name='ring_page'),         
     path('necklaces/', views.necklace_page, name='necklace_page'), 
+    path('earrings/', views.earrings_page, name='earrings_page'), 
+
     # path('jewelry/<int:jewelry_id>/', views.jewelry_detail, name='jewelry_detail'),
 
 #---------------------------------------------------------------------------------------------------------for user
 
     path('user_home',views.user_home),
+    path('user_rings/', views.r_page, name='ring_page'),         
+
 
 #-----------------------------------------------------------------------------------------------------------for jewels
 

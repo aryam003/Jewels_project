@@ -102,11 +102,11 @@ def edit_pro(req,id):
             category = JewelryType.objects.update(name=category_name)
         except JewelryType.DoesNotExist:
             messages.error(req, "Category does not exist!")
-            return redirect('add_pro')  
+            return redirect('edit_pro')  
         if file:
             Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,image=file,category=category)
         else:
-            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight)
+            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,category=category_name)
         
         return redirect(ring_page)
     return render(req,'shop/edit_pro.html',{'data':pro})
@@ -117,7 +117,7 @@ def delete_pro(req,id):
     url=url.split('/')[-1]
     os.remove('media/'+url)
     data.delete()
-    return redirect(shop_home)
+    return redirect(ring_page)
 
 
     
@@ -139,7 +139,10 @@ def user_home(req):
 
 
 
-
+def r_page(request):
+    ring_category = JewelryType.objects.get(name='ring') 
+    rings = Jewelry.objects.filter(category=ring_category)
+    return render(request, 'user/r_page.html', {'jewelry_items': rings})
 
 
 
@@ -158,6 +161,11 @@ def necklace_page(request):
     necklace_category = JewelryType.objects.get(name='necklace')
     necklaces = Jewelry.objects.filter(category=necklace_category)
     return render(request, 'shop/necklace_page.html', {'jewelry_items': necklaces})
+
+def earrings_page(request):
+    earrings_category = JewelryType.objects.get(name='earrings')
+    earrings = Jewelry.objects.filter(category=earrings_category)
+    return render(request, 'shop/earrings_page.html', {'jewelry_items': earrings })
 
 # displaying the details of a specific piece of jewelry
 # def jewelry_detail(request, jewelry_id):
