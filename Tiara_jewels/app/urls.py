@@ -26,7 +26,10 @@ urlpatterns=[
 #---------------------------------------------------------------------------------------------------------for user
 
     path('user_home',views.user_home),
-    path('user_rings/', views.r_page, name='ring_page'),         
+
+    path('user_rings/', views.r_page, name='ring_page'),  
+    path('user_necklaces/', views.n_page, name='necklace_page'), 
+    path('user_earrings/', views.e_page, name='earrings_page'),        
 
 
 #-----------------------------------------------------------------------------------------------------------for jewels

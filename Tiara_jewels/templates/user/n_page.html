@@ -41,26 +41,21 @@
             </div>
         </nav>
     <div class="container mt-5">
-        <h1 class="text-center mb-4" style="color: black;">Rings Collection</h1>
+        <h1 class="text-center mb-4" style="color: black;">Necklace Collection</h1>
         
         <div class="row">
             {% for jewelry in jewelry_items %}
                 <div class="col-md-3">
                     <div class="jewelry-item">
                         <h2>{{ jewelry.name }}</h2>
-                        <p>{{ jewelry.description }}</p>
+                        <!-- <p>{{ jewelry.description }}</p>
                         <p><strong>Material:</strong> {{ jewelry.material }}</p>
                         <p><strong>Price:</strong> ${{ jewelry.price }}</p>
-                        <p><strong>Weight:</strong> {{ jewelry.weight }} grams</p>
+                        <p><strong>Weight:</strong> {{ jewelry.weight }} grams</p> -->
                         
                         {% if jewelry.image %}
                             <img src="{{ jewelry.image.url }}" alt="{{ jewelry.name }}">
                         {% endif %}
-                        
-                        <div class="action-buttons">
-                            <a href="../edit_pro/{{ jewelry.pk }}" class="btn  btn-sm">Edit</a>
-                            <a href="../delete_pro/{{ jewelry.pk }}" class="btn  btn-sm">Delete</a>
-                        </div>
                     </div>
                 </div>
             {% endfor %}

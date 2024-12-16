@@ -106,48 +106,18 @@ def edit_pro(req,id):
         if file:
             Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,image=file,category=category)
         else:
-            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,category=category_name)
+            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,category=category)
         
         return redirect(ring_page)
     return render(req,'shop/edit_pro.html',{'data':pro})
 
 def delete_pro(req,id):
     data=Jewelry.objects.get(pk=id)
-    url=data.img.url
+    url=data.image.url
     url=url.split('/')[-1]
     os.remove('media/'+url)
     data.delete()
     return redirect(ring_page)
-
-
-    
-
-
-
-
-#-------------------------------------------------------------------------------------------------------------------------------------
-
-
-def user_home(req):
-    if 'user' in req.session:
-        products=Jewelry.objects.all()
-        return render(req,'user/user_home.html',{'product':products})
-    
-
-
-
-
-
-
-def r_page(request):
-    ring_category = JewelryType.objects.get(name='ring') 
-    rings = Jewelry.objects.filter(category=ring_category)
-    return render(request, 'user/r_page.html', {'jewelry_items': rings})
-
-
-
-#------------------------------------------------
-
 
 
 #  displaying all Rings
@@ -167,8 +137,83 @@ def earrings_page(request):
     earrings = Jewelry.objects.filter(category=earrings_category)
     return render(request, 'shop/earrings_page.html', {'jewelry_items': earrings })
 
+
+    
+
+
+
+
+#-------------------------------------------------------------------------------------------------------------------------------------
+
+
+def user_home(req):
+    if 'user' in req.session:
+        products=Jewelry.objects.all()
+        return render(req,'user/user_home.html',{'product':products})
+
+# def view_pro(req,id):
+#     log_user=User.objects.get(username=req.session['user'])
+#     products=Jewelry.objects.get(pk=id)
+#     try:
+#         cart=Card.objects.get(product=products,user=log_user)
+#     except:
+#         cart=None
+#     return render(req,'user/view_pro.html',{'product':products,'cart':cart})
+    
+# def cart_display(req):
+#     log_user=User.objects.get(username=req.session['user'])
+#     data=Card.objects.filter(user=log_user)
+#     return render(req,'user/cart_display.html',{'data':data}) 
+
+# def delete_cart(req,id):
+#     data=Card.objects.get(pk=id)
+#     data.delete()
+#     return redirect(cart_display)   
+
+
+# def buy_pro(req,id):
+#     products=product.objects.get(pk=id)
+#     user=User.objects.get(username=req.session['user'])
+#     price=products.offer_price
+#     data=Buy.objects.create(user=user,product=products,price=price)
+#     data.save()
+#     return redirect(user_home)
+
+# def user_view_bookings(req):
+#     user=User.objects.get(username=req.session['user'])
+#     data=Buy.objects.filter(user=user)
+#     return render(req,'user/view_booking.html',{'data':data})
+
+
+
+
+#  displaying all Rings
+def r_page(request):
+    ring_category = JewelryType.objects.get(name='ring') 
+    rings = Jewelry.objects.filter(category=ring_category)
+    return render(request, 'user/r_page.html', {'jewelry_items': rings})
+#  displaying all necklace
+def n_page(request):
+    necklace_category = JewelryType.objects.get(name='necklace')
+    necklaces = Jewelry.objects.filter(category=necklace_category)
+    return render(request, 'user/n_page.html', {'jewelry_items': necklaces})
+#  displaying all earrings
+def e_page(request):
+    earrings_category = JewelryType.objects.get(name='earrings')
+    earrings = Jewelry.objects.filter(category=earrings_category)
+    return render(request, 'user/e_page.html', {'jewelry_items': earrings })
+
+
+#------------------------------------------------
+
+
+
+
 # displaying the details of a specific piece of jewelry
 # def jewelry_detail(request, jewelry_id):
 #     jewelry = Jewelry.objects.get(id=jewelry_id)
 #     return render(request, 'jewelry/jewelry_detail.html', {'jewelry': jewelry})
 
+# class Card(models.Model):
+#     user=models.ForeignKey(User,on_delete=models.CASCADE)    
+#     jewelry=models.ForeignKey(product,on_delete=models.CASCADE)

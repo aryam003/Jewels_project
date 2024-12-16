@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>edit</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
@@ -37,7 +38,7 @@
             <label for="JewelryType">Category</label>
             <select class="form-control" name="JewelryType" id="JewelryType" required>
                 {% for category in categories %}
-                    <option value="{{ category.name }}" {% if category.name = product.category.name %}selected{% endif %}>{{ category.name }}</option>
+                    <option value="{{ category.name }}" {% if category.name is product.category.name %}selected{% endif %}>{{ category.name }}</option>
                 {% endfor %}
             </select>
         </div>
