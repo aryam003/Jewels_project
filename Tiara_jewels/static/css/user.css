@@ -1,14 +1,14 @@
   /* Full page background */
-  /* .background {
+  .background {
     top: 15px;
     position: relative;
-    background-image: url('/static/image/r2.png');
+    background-image: url('/static/image/First.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh; /* Full viewport height */
-    /* position: relative;
+    position: relative;
     height: 400px;
-} */ 
+}
 
 /* Button centered over the background */
 .button-container{
@@ -33,7 +33,6 @@
     .card {
         border: none;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        
       }
       .card-img-top {
         max-height: 250px;

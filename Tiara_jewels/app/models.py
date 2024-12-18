@@ -23,3 +23,19 @@ class Jewelry(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Cart(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)    
+    product=models.ForeignKey(Jewelry,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    
+class Buy(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    product=models.ForeignKey(Jewelry,on_delete=models.CASCADE)
+    price=models.IntegerField()
+    date=models.DateField(auto_now_add=True)   
+
+    def __str__(self):
+        return self.name  

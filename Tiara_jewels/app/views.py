@@ -106,10 +106,14 @@ def edit_pro(req,id):
         if file:
             Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,image=file,category=category)
         else:
-            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,category=category)
+            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,image=file)
         
         return redirect(ring_page)
     return render(req,'shop/edit_pro.html',{'data':pro})
+
+def bookings(req):
+    bookings=Buy.objects.all()[::-1]
+    return render(req,'shop/booking.html',{'data':bookings})
 
 def delete_pro(req,id):
     data=Jewelry.objects.get(pk=id)
@@ -130,15 +134,19 @@ def ring_page(request):
 def necklace_page(request):
     necklace_category = JewelryType.objects.get(name='necklace')
     necklaces = Jewelry.objects.filter(category=necklace_category)
-    return render(request, 'shop/necklace_page.html', {'jewelry_items': necklaces})
+    return render(request, 'shop/ring_page.html', {'jewelry_items': necklaces})
 
 def earrings_page(request):
     earrings_category = JewelryType.objects.get(name='earrings')
     earrings = Jewelry.objects.filter(category=earrings_category)
-    return render(request, 'shop/earrings_page.html', {'jewelry_items': earrings })
+    return render(request, 'shop/ring_page.html', {'jewelry_items': earrings })
+
+def Watches_page(request):
+    Watches_category = JewelryType.objects.get(name='Watches')
+    Watches = Jewelry.objects.filter(category=Watches_category)
+    return render(request, 'shop/ring_page.html', {'jewelry_items': Watches })
 
 
-    
 
 
 
@@ -151,38 +159,48 @@ def user_home(req):
         products=Jewelry.objects.all()
         return render(req,'user/user_home.html',{'product':products})
 
-# def view_pro(req,id):
-#     log_user=User.objects.get(username=req.session['user'])
-#     products=Jewelry.objects.get(pk=id)
-#     try:
-#         cart=Card.objects.get(product=products,user=log_user)
-#     except:
-#         cart=None
-#     return render(req,'user/view_pro.html',{'product':products,'cart':cart})
+def view_pro(req,id):
+    log_user=User.objects.get(username=req.session['user'])
+    products=Jewelry.objects.get(pk=id)
+    try:
+        cart=Cart.objects.get(product=products,user=log_user)
+    except:
+        cart=None
+    return render(req,'user/view.html',{'product':products,'cart':cart})
+
+def add_to_cart(req,id):
+    products=Jewelry.objects.get(pk=id)
+    print(products)
+    user=User.objects.get(username=req.session['user'])
+    print(user)
+    data=Cart.objects.create(user=user,product=products)
+    data.save()
+    return redirect(cart_display)
+
     
-# def cart_display(req):
-#     log_user=User.objects.get(username=req.session['user'])
-#     data=Card.objects.filter(user=log_user)
-#     return render(req,'user/cart_display.html',{'data':data}) 
+def cart_display(req):
+    log_user=User.objects.get(username=req.session['user'])
+    data=Cart.objects.filter(user=log_user)
+    return render(req,'user/cart_display.html',{'data':data}) 
 
-# def delete_cart(req,id):
-#     data=Card.objects.get(pk=id)
-#     data.delete()
-#     return redirect(cart_display)   
+def delete_cart(req,id):
+    data=Cart.objects.get(pk=id)
+    data.delete()
+    return redirect(cart_display)   
 
 
-# def buy_pro(req,id):
-#     products=product.objects.get(pk=id)
-#     user=User.objects.get(username=req.session['user'])
-#     price=products.offer_price
-#     data=Buy.objects.create(user=user,product=products,price=price)
-#     data.save()
-#     return redirect(user_home)
+def buy_pro(req,id):
+    products=Jewelry.objects.get(pk=id)
+    user=User.objects.get(username=req.session['user'])
+    price=products.offer_price
+    data=Buy.objects.create(user=user,product=products,price=price)
+    data.save()
+    return redirect(user_home)
 
-# def user_view_bookings(req):
-#     user=User.objects.get(username=req.session['user'])
-#     data=Buy.objects.filter(user=user)
-#     return render(req,'user/view_booking.html',{'data':data})
+def user_view_bookings(req):
+    user=User.objects.get(username=req.session['user'])
+    data=Buy.objects.filter(user=user)
+    return render(req,'user/view_booking.html',{'data':data})
 
 
 
@@ -196,12 +214,12 @@ def r_page(request):
 def n_page(request):
     necklace_category = JewelryType.objects.get(name='necklace')
     necklaces = Jewelry.objects.filter(category=necklace_category)
-    return render(request, 'user/n_page.html', {'jewelry_items': necklaces})
+    return render(request, 'user/r_page.html', {'jewelry_items': necklaces})
 #  displaying all earrings
 def e_page(request):
     earrings_category = JewelryType.objects.get(name='earrings')
     earrings = Jewelry.objects.filter(category=earrings_category)
-    return render(request, 'user/e_page.html', {'jewelry_items': earrings })
+    return render(request, 'user/r_page.html', {'jewelry_items': earrings })
 
 
 #------------------------------------------------
