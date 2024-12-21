@@ -1,14 +1,4 @@
-  /* Full page background */
-  /* .background {
-    top: 15px;
-    position: relative;
-    background-image: url('/static/image/r2.png');
-    background-size: cover;
-    background-position: center;
-    height: 100vh; /* Full viewport height */
-    /* position: relative;
-    height: 400px;
-} */ 
+ 
 
 /* Button centered over the background */
 .button-container{

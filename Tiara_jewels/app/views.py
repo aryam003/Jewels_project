@@ -141,10 +141,10 @@ def earrings_page(request):
     earrings = Jewelry.objects.filter(category=earrings_category)
     return render(request, 'shop/ring_page.html', {'jewelry_items': earrings })
 
-def Watches_page(request):
-    Watches_category = JewelryType.objects.get(name='Watches')
-    Watches = Jewelry.objects.filter(category=Watches_category)
-    return render(request, 'shop/ring_page.html', {'jewelry_items': Watches })
+def Bracelet_page(request):
+    Bracelet_category = JewelryType.objects.get(name='Bracelet')
+    Bracelet = Jewelry.objects.filter(category=Bracelet_category)
+    return render(request, 'shop/ring_page.html', {'jewelry_items': Bracelet })
 
 
 
@@ -220,6 +220,11 @@ def e_page(request):
     earrings_category = JewelryType.objects.get(name='earrings')
     earrings = Jewelry.objects.filter(category=earrings_category)
     return render(request, 'user/r_page.html', {'jewelry_items': earrings })
+
+def b_page(request):
+    Bracelet_category = JewelryType.objects.get(name='Bracelet')
+    Bracelet = Jewelry.objects.filter(category=Bracelet_category)
+    return render(request, 'user/r_page.html', {'jewelry_items': Bracelet })
 
 
 #------------------------------------------------
