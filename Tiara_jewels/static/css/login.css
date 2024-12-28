@@ -1,37 +1,39 @@
 body {
-    margin: 0;
-    padding: 0;
+    /* margin: 0; */
+    /* padding: 0; */
+    /* position: relative; */
     height: 100vh;
-    background: url('/static/image/log.avif') no-repeat center center/cover;
+    background: url('/static/image/l2.jpg') no-repeat center center/cover;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* padding-right: 50%; */
+    /* justify-content: center; */
+    /* align-items: center; */
     font-family: Arial, sans-serif;
   }
   .login-container {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     padding: 30px;
-    box-shadow: 0 4px 10px rgba(14, 14, 14, 0.2);
+    box-shadow: 0 4px 10px rgb(181, 148, 219);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
   }
   .login-container h2 {
     margin-bottom: 20px;
     color: #c0bdbd;
   }
   .login-container .btn {
-    background-color: black;
+    background-color: rgb(181, 148, 219);
     color: white;
   }
   .login-container .btn:hover {
-    background-color:  black;
+    background-color:  rgb(181, 148, 219);
   }
   .register-link {
     margin-top: 10px;
   }
   .register-link a {
-    color: #050505;
+    color: rgb(181, 148, 219);
     text-decoration: none;
   }
   .register-link a:hover {
