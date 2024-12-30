@@ -96,20 +96,21 @@ def edit_pro(req,id):
         material=req.POST['material']
         price=req.POST['price']
         weight=req.POST['weight']
-        category_name = req.POST.get('JewelryType')
+        # category_name = req.POST.get('JewelryType')
         file=req.FILES['img'] 
-        try:
-            category = JewelryType.objects.update(name=category_name)
-        except JewelryType.DoesNotExist:
-            messages.error(req, "Category does not exist!")
-            return redirect('edit_pro')  
+        # try:
+        #     category = JewelryType.objects.update(name=category_name)
+        # except JewelryType.DoesNotExist:
+        #     messages.error(req, "Category does not exist!")
+        #     return redirect('edit_pro')  
         if file:
-            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,image=file,category=category)
+            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,img=file)
         else:
-            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,image=file)
+            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight)
         
         return redirect(ring_page)
     return render(req,'shop/edit_pro.html',{'data':pro})
+
 
 def bookings(req):
     bookings=Buy.objects.all()[::-1]
