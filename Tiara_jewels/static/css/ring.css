@@ -3,8 +3,8 @@
             border-radius: 8px;
             padding: 10px;
             /* margin-bottom: 20px; */
-            background-color :black;
-            transition: box-shadow 0.3s ease;
+            background-color :white;
+            /* transition: box-shadow 0.3s ease; */
         }
         /* body{ */
             /* background-color: #121212; */
@@ -40,9 +40,10 @@
         .action-buttons a.btn {
             font-size: 1rem;
         }
-
+/* 
         .card {
             border: none;
+            background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
           }
           .card-img-top {
@@ -64,11 +65,12 @@
             font-size: 1.2rem;
             color: #007bff;
             font-weight: bold;
-          }
+          } */
 
               /* Custom CSS for styling */
     .card {
       border: none;
+      background-color: white;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .card-img-top {
