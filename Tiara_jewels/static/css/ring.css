@@ -4,6 +4,7 @@
             padding: 10px;
             /* margin-bottom: 20px; */
             background-color :white;
+            
             /* transition: box-shadow 0.3s ease; */
         }
         /* body{ */
@@ -71,7 +72,7 @@
     .card {
       border: none;
       background-color: white;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(129, 129, 129, 0.1);
     }
     .card-img-top {
       max-height: 250px;
@@ -86,7 +87,7 @@
     }
     .card-text {
       font-size: 1rem;
-      color: #555;
+      color: #060606;
     }
     .card-price {
       font-size: 1.2rem;

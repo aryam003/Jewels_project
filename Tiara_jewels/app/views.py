@@ -4,8 +4,11 @@ from . models import *
 import os
 from django.contrib.auth.models import User
 from django.contrib import messages
-# from django.shortcuts import render
-# from .models import Jewelry, JewelryType
+
+# from django.core.mail import send_mail
+# from django.conf import settings
+# from django.http import HttpResponse
+# from django.utils import timezone
 # Create your views here.
 
 def shop_login(req):
@@ -42,6 +45,7 @@ def register(req):
         name=req.POST['name']
         email=req.POST['email']
         password=req.POST['password']
+        # send_mail('Eshop registration', 'E_shop account created', settings.EMAIL_HOST_USER, [email])
         try:
             data=User.objects.create_user(first_name=name,username=email,email=email,password=password)
             data.save()
