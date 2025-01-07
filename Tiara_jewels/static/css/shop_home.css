@@ -45,3 +45,32 @@
         color: #007bff;
         font-weight: bold;
       }
+
+      footer{
+        /* display: flex; */
+        width: 100%;
+        height: 600px;
+      }
+    
+      footer a{
+      text-decoration: none;
+      color: black;
+      font-size: medium;
+      }
+      footer h6{
+      font-weight: bold;
+      }
+      footer  a:hover{
+      color: black;
+      }
+      footer svg:hover{
+          color: rgb(106, 105, 105);
+      }
+      footer img{
+      padding: 5px;
+      margin-bottom: 5px;
+      }
+      .card-img-top {
+        width: 100%;
+        height: auto;
+      }

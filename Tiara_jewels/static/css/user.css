@@ -2,12 +2,12 @@
   .background {
     top: 15px;
     position: relative;
-    background-image: url('/static/image/model.jpg');
+    background-image: url('/static/image/Lisa.webp');
     background-size: cover;
     background-position: center;
-    height: 100vh; /* Full viewport height */
+    height: 150vh; /* Full viewport height */
     position: relative;
-    height: 400px;
+    height: 480px;
 }
 
 /* Button centered over the background */

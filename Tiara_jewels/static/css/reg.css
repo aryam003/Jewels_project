@@ -10,7 +10,7 @@
         /* background: url('/static/image/img2.jpg') no-repeat center center/cover; */
         
         font-family: 'Roboto', sans-serif;
-        background-color: #f0b56d;
+        background-color: rgb(177, 130, 238);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -62,7 +62,7 @@
     }
     
     input[type="submit"] {
-        background-color: #c28229;
+        background-color: rgb(177, 130, 238);
         color: white;
         font-weight: bold;
         cursor: pointer;

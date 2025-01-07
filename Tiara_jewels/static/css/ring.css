@@ -25,17 +25,17 @@
 
         .jewelry-item h2 {
             font-size: 1.5rem;
-            color: whitesmoke;
+            color: rgb(0, 0, 0);
         }
 
         .jewelry-item p {
             font-size: 0.9rem;
-            color: whitesmoke;
+            color: rgb(0, 0, 0);
         }
 
         .action-buttons a {
             margin-right: 10px;
-            color: whitesmoke;
+            color: rgb(3, 3, 3);
         }
 
         .action-buttons a.btn {
