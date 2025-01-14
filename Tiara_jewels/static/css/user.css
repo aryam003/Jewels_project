@@ -37,7 +37,7 @@
         
       }
       .card-img-top {
-        max-height: 250px;
+        max-height: auto;
         object-fit: cover;
       }
       .card-body {
@@ -91,4 +91,6 @@
         width: 100%;
         height: auto;
       }
+      
+
       

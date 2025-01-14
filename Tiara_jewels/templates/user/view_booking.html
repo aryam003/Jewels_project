@@ -34,14 +34,19 @@
     <div class="container">
         <div class="row">
             {% for i in data %}
+            {% for cart_obj in data %}
             <div class="col-lg-6 mt-3 " style=" text-align: center;">
-                <img src="{{i.product.img.url}}" alt="" style="width: 400px; height: 400px;">
+                {% comment %} <img src="{{i.product.img.url}}" alt="" style="width: 400px; height: 400px;"> {% endcomment %}
+                <div class="product-image">
+                    <img src="{{ cart_obj.product.image.url }}" alt="{{ product.name }}" style="width: 400px; height: 400px;">
+                </div>
                 <p> {{i.product.name}} </p>
                 <p>Price: {{i.price}}</p>
                 <p>Date of Booking: {{i.date}}</p>
             </div>
             {% endfor %}
         </div>
+        {% endfor %}
     </div>
 </body>
 </html>

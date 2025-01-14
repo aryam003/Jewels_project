@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% load static %}
-    <!-- <link rel="stylesheet" href="{% static '/css/view.css' %}"> -->
+    <link rel="stylesheet" href="{% static '/css/view_pro.css' %}"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -30,49 +30,47 @@
         </div>
     </div>
 </nav>
+  {% comment %} <div class="line" style="background-color: whitesmoke; width: 100%; height: 25px; color: white; font-size: 13px; padding-left: 33%;"></div> {% endcomment %}
             
-
-
-<div class="product-view">
-    <div class="product-details">
+<div class="container">
+    <div class="product-view">
+      <div class="row product-details">
         <!-- Product Image -->
-        <div class="product-image">
-            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <div class="col-lg-6 col-md-6 col-sm-12 mb-4 product-image">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid rounded shadow-sm">
         </div>
-
+  
         <!-- Product Information -->
-        <div class="product-info">
-            <h1>{{ product.name }}</h1>
-            <p><strong>Description:</strong> {{ product.description }}</p>
-            <p><strong>Material:</strong> {{ product.material }}</p>
-            <p><strong>Weight:</strong> {{ product.weight }} g</p>
-            <p><strong>Category:</strong> {{ product.category.name }}</p>
-            <p><strong>Price:</strong> ${{ product.price }}</p>
-
-            <!-- Cart Status -->
-            {% if cart %}
-                <p><strong>Item already in your cart.</strong></p>
-            {% else %}
-            <div class="mt-5">
-                <a href="../buy_pro/{{product.pk}}" class="btn btn-outline-primary">Buy Now</a>
-                {% if cart %}
-                    <a href="../cart_display" class="btn btn-outline-primary"> Go to cart</a>
-                    {% else %}
-                        <a href="../add_to_cart/{{product.pk}}" class="btn btn-outline-primary">add to cart</a>
-                {% endif%}
-                </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 product-info">
+          <h3>{{ product.name }}</h3>
+          <p><strong>Category:</strong> {{ product.category.name }}</p>
+          <p><strong>Weight:</strong> {{ product.weight }} g</p>
+          <p><strong>Price:</strong> ${{ product.price }}</p>
+          <p><strong>Material:</strong> {{ product.material }}</p>
+          <p><strong>Description:</strong> {{ product.description }}</p>
+          <!-- Cart Status -->
+          {% if cart %}
+            <div class="alert alert-info">
+              <strong>Item already in your cart.</strong>
             </div>
-               
-                    <!-- {% csrf_token %}
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </form> -->
-            {% endif %}
+          {% else %}
+            <div class="d-flex flex-column mt-4">
+              <a href="../buy_pro/{{ product.pk }}" class="btn btn-dark mb-3">Buy Now</a>
+              <a href="../add_to_cart/{{ product.pk }}" class="btn btn-outline-dark mb-3">Add to Cart</a>
+              {% if cart %}
+                <a href="../cart_display" class="btn btn-outline-dark">Go to Cart</a>
+              {% endif %}
+             
+            </div>
+          {% endif %}
         </div>
+      </div>
     </div>
-</div>
-
-
-
+  </div>
+  
+  <!-- Bootstrap JS & Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  {% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script> {% endcomment %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0dlnM+6b9rItc97g6zUl+a+Gy6pQ5Z2v5/RtWgkLQun7dp7r" crossorigin="anonymous"></script>
  

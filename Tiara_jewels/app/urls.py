@@ -2,10 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns=[
-    path('',views.shop_login),
+    path('login',views.shop_login),
     path('logout',views.shop_logout),
     path('register',views.register),
-
+    path('',views.public),
 #-------------------------------------------------------------------------------------------------------- for shop
 
     path('shop_home',views.shop_home),

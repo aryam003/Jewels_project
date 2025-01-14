@@ -1,0 +1,71 @@
+
+/* Overall padding for the product page */
+.product-view {
+    padding: 50px 15px;
+}
+
+/* Product image section */
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Product info styling */
+.product-info {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-info h3 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: rgb(39, 27, 12);
+}
+
+.product-info p {
+    padding-top: 6%;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.product-info strong {
+    color: rgb(115, 147, 184);
+}
+
+.product-info .btn {
+    font-size: 1.1rem;
+    padding: 12px 25px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+    .product-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-info h1 {
+        font-size: 2rem;
+    }
+
+    .product-info p {
+        font-size: 1rem;
+    }
+
+    .product-info .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .product-image {
+        margin-bottom: 30px;
+    }
+}

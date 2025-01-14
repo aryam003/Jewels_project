@@ -56,7 +56,8 @@ def register(req):
     else:
         return render(req,'register.html')
     
-
+def public(req):
+    return render(req,'public.html')
 
     
 
@@ -197,7 +198,7 @@ def delete_cart(req,id):
 def buy_pro(req,id):
     products=Jewelry.objects.get(pk=id)
     user=User.objects.get(username=req.session['user'])
-    price=products.offer_price
+    price=products.price
     data=Buy.objects.create(user=user,product=products,price=price)
     data.save()
     return redirect(user_home)
