@@ -208,7 +208,8 @@ def user_view_bookings(req):
     data=Buy.objects.filter(user=user)
     return render(req,'user/view_booking.html',{'data':data})
 
-
+def about(req):
+    return render(req,'user/about.html')
 
 
 #  displaying all Rings
