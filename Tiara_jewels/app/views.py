@@ -102,14 +102,9 @@ def edit_pro(req,id):
         price=req.POST['price']
         weight=req.POST['weight']
         # category_name = req.POST.get('JewelryType')
-        file=req.FILES['img'] 
-        # try:
-        #     category = JewelryType.objects.update(name=category_name)
-        # except JewelryType.DoesNotExist:
-        #     messages.error(req, "Category does not exist!")
-        #     return redirect('edit_pro')  
+        file=req.FILES['img']  
         if file:
-            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight,img=file)
+            Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight)
         else:
             Jewelry.objects.filter(pk=id).update(name=name,description=description,material=material,price=price,weight=weight)
         

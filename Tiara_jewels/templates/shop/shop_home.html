@@ -122,63 +122,58 @@
       </div>
     </div>
   </div>
-  <div class="ftr" style=" padding-top: 6%">
+  <div class="ftr" style=" padding-top: 2%">
     <footer class=" text-light pt-5 mt-3" style="font-size: 15px; background-color:  whitesmoke;">
-      <div class="hr" style="color: black;">
-      <hr/>
-    </div>
+  
       <div class="container">
           <div class="row">
               <div class="col-md-12">
                   <!-- <h6>SUPPORT</h6> -->
                   <ul class="list-unstyled">
-                      <li><a href="" >Home Jewellery Necklaces & pendants  Happy Hearts necklaces & pendants</a></li>
-                      <li><a href="" style="font-size: 30px; color: black; padding-top: 1%;">----------<i class="bi bi-whatsapp">--------------------</i><i class="bi bi-instagram">--------------------</i><i class="bi bi-youtube">--------------------<i class="bi bi-twitter"></i></i>----------
+                      <!-- <li><a href="" >Home Jewellery Necklaces & pendants  Happy Hearts necklaces & pendants</a></li> -->
+                      <li><a href="" style="font-size: 30px; color: rgb(96, 95, 95); padding-left: 13%; "><i class="bi bi-instagram" style="padding: 8%;"></i><i class="bi bi-youtube" style="padding: 8%;"><i class="bi bi-whatsapp" style="padding: 8%;"></i><i class="bi bi-twitter" style="padding: 8%;"></i></i>
                       </a></li>
+                      <div class="hr" style="color: rgb(0, 0, 0);">
+                        <hr/>
+                      </div>
+                      <div class="container3" style="color: rgb(68, 66, 66);" >
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <h2>Contact Us</h2>
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="text" class="form-control" id="phone" name="phone" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label">Message</label>
+                                        <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                </form>
+                            </div>
+                            <div class="col-md-6  text-black p-4 mt-1">
+                                <h3> To contact us</h3>
+                                <p><i class="bi bi-telephone"></i> Call Us: +91 </p>
+                                <p><i class="bi bi-envelope"></i> Write to Us: </p>
+                                <p><i class="bi bi-clock"></i> Office hours: Mon-Fri 9:00am - 6:00pm</p>
+                            </div>
+                        </div>
+                    </div>
         <div class="col-md-12" style="color: black;">
           <!-- <h6>--------------------------------------------------------------------------------------------------------------------</h6> -->
         </div>
-                      <!-- <li><a href="" >Privacy Policy</a></li>
-                      <li><a href="" >Terms&Conditions</a></li>
-                      <li><a href="" >Sneakers</a></li>  -->
-                  </ul>
-              </div>
-              <!-- <div class="col-md-3">
-                  <h5>FAQs</h5>
-                  <ul class="list-unstyled">
-                      <li><a href="" >My Account</a></li>
-                      <li><a href="" >Exchange&Return Policy</a></li>
-                      <li><a href="" >Privacy Policy</a></li>
-                      <li><a href="" >Terms&Conditions</a></li>
-                      <li><a href="" >Sneakers</a></li>
-                  </ul>
-              </div> -->
-              <!-- <div class="col-md-3">
-                <h6>Get in Touch</h6>
-            <ul class="list-unstyled">
-                <li><a href="#" >Company</a></li>
-                <li><a href="#" >Erankulam</a></li>
-                <li><a href="#" >Kochi</a></li>
-                <li><a href="#" ></a></li>
-                <li><a href="#" >Email:</a></li>
-                <li><a href="#" >GalleryHub@gmail.com</a></li>
-                <li><a href="#" >Contact no:</a></li>
-                <li><a href="#" >+91 999999999</a></li>
-                <li><a href="#" ></a></li>
-            </ul>
-            </div> -->
-              <!-- <div class="col-md-3">
-                  <h6>STAY UP TO DATE</h6>
-                  <ul class="list-unstyled">
-                      <li><a href="#">Sign up for Email</a></li>
-                      <br>
-                  <h6>EXPLORE</h6> -->
-    
-              <!-- </div> -->
           </div>
       </div>
-      <hr>
-      <br>
     </footer>
     </div>  
 
