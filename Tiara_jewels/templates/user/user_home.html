@@ -6,6 +6,8 @@
     <title>User page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static '/css/user.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -52,7 +54,12 @@
           </div>
       </nav>
 <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
-
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
      <div class="carousel-inner" style="padding-top: 0px;">
           <div class="carousel-item active">
               <img src="{% static 'image/1_1_1.jpg' %}" alt="Los Angeles" class="d-block" style="width: 100%; height: 480px;">
@@ -128,7 +135,7 @@
      </div>
 <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
 
-     <div class="container  my-5" style="width: 98%; padding-left: 2%;">
+     <div class="container-b  my-5" style="width: 98%; padding-left: 2%;">
       <h1 class="text-center mb-4"></h1>
       <div class="row">
         <div class="col-md-3 mb-3 col-6 col-sm-4 ">
@@ -190,23 +197,30 @@
 
 
 <div class="container my-5 mt-6" style="margin-top: 20px;">
-  <h1 class="text-center mb-5" style="padding-top: 5px;"></h1>
+  <!-- <h1 class="text-center mb-5" style="padding-top: 5px;">About Us</h1> -->
+  
   <!-- Who We Are Section -->
-  <div class="row align-items-center about-section mb-5">
+  <div class="row align-items-center about-section mb-5" style="background: linear-gradient(to right,rgb(91, 10, 10) ,rgb(194, 1, 1), rgb(246, 153, 153));">
       <div class="col-md-6">
-          <img src="{% static 'image/r2.avif' %}" alt="classrooms" class="img-fluid">
+          <a href="user_rings"><img src="{% static 'image/r2.avif' %}" alt="classrooms" class="img-fluid"></a>
       </div>
-      <div class="col-md-10">
+      <div class="col-md-6" >
+        <!-- <a href="user_rings"><img src="{% static 'image/two1.jpeg' %}" alt="classrooms" class="img-fluid"></a> -->
 
-      </div>
+        <h6 class="custom-heading d-none d-md-block">TIARA JEWELS</h6>
+        <p class="text-muted d-none d-md-block">Explore our exclusive collection of handcrafted jewelry that is designed to elevate your style. Each piece tells a story of craftsmanship and elegance.</p>
+    </div>
   </div>
-  <div class="row align-items-center about-section">
+
+  <div class="row align-items-center about-section" style="background: linear-gradient(to right, rgb(156, 121, 83), rgb(172, 131, 81));">
       <div class="col-md-6 order-md-2">
-          <img src="{% static 'image/w.jpg' %}" alt="classrooms" class="img-fluid">
+          <a href="user_rings"><img src="{% static 'image/w.jpg' %}" alt="classrooms" class="img-fluid"></a>
       </div>
       <div class="col-md-6 order-md-1">
-          <!-- <img src="{% static 'image/shop2.jpg' %}" alt="classrooms" class="img-fluid"> -->
-           
+        <h6 class="custom-heading d-none d-md-block">Our Legacy</h6>
+        <!-- <a href="user_rings"><img src="{% static 'image/two.jpg' %}" alt="classrooms" class="img-fluid"></a> -->
+
+        <p class="text-muted d-none d-md-block">With over 20 years of experience, Tiara Jewels has been a trusted name in the jewelry industry, delivering timeless pieces for every occasion.</p>
       </div>
   </div>
 </div>
@@ -247,80 +261,89 @@
 
 <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------  -->
 
-<div class="vdo" style="display: flex; justify-content: space-between; padding-top: 3%;">
-  <video width="50%"  controls autoplay loop muted>
-    <source src="{% static 'image/vdo.mp4' %}" type="video/mp4" style="height: 400px; ">
+<div class="vdo " style="display: flex; justify-content: space-between; padding-top: 0%; background: linear-gradient(to right, rgb(251, 237, 221), rgb(245, 186, 115),rgb(62, 29, 16));">
+  <video width="70%"  controls autoplay loop muted >
+    <source src="{% static 'image/vdo2.mp4' %}" type="video/mp4" style="height: auto; ">
   </video>
-  <div style="width: 50%; padding-left: 20px;">
-    <h3>Jewelry Collection</h3>
-    <p>Discover our exquisite collection of rings, necklaces, bracelets, and earrings. Find the perfect piece for every occasion.</p>
+  <div style="width: 30%; padding-top: 170px;">
+    <h3 style="font-family: 'Arial', sans-serif; font-size: 2em;  color: black; margin-bottom: 15px;  padding: 10px; border-radius: 10px; text-align: center;">
+  </h3>
+  <p class="custom-heading d-none d-md-block" style="font-family: 'Georgia', serif; font-size: 1.1em; color: #000000;  padding: 15px; border-radius: 8px; line-height: 1.6; text-align: justify;">
+    Discover our exquisite collection of rings, necklaces, bracelets, and earrings. Find the perfect piece for every occasion.
+  </p>
+    </div>
   </div>
-</div> 
-<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 
 
 <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
  
- <div class="ftr" style=" padding-top: 6%">
-<footer class=" text-light pt-5 mt-3" style="font-size: 15px; background-color:  whitesmoke;">
-  <div class="hr" style="color: black;">
-  <hr/>
-</div>
-  <div class="container">
-      <div class="row">
-          <div class="col-md-12">
-              <!-- <h6>SUPPORT</h6> -->
-              <ul class="list-unstyled">
-                  <li><a href="" >Home Jewellery Necklaces & pendants  Happy Hearts necklaces & pendants</a></li>
-                  <li><a href="" style="font-size: 30px; color: black; padding-top: 1%;">----------<i class="bi bi-whatsapp">--------------------</i><i class="bi bi-instagram">--------------------</i><i class="bi bi-youtube">--------------------<i class="bi bi-twitter"></i></i>----------
-                  </a></li>
-    <div class="col-md-12" style="color: black;">
-      <!-- <h6>--------------------------------------------------------------------------------------------------------------------</h6> -->
-    </div>
-                  <!-- <li><a href="" >Privacy Policy</a></li>
-                  <li><a href="" >Terms&Conditions</a></li>
-                  <li><a href="" >Sneakers</a></li>  -->
-              </ul>
+<div class="ftr" style="padding-top: 2%">
+  <footer class="text-dark pt-5 mt-3" style="font-size: 15px; background-color: #f8f9fa; border-top: 3px solid #d1d1d1;">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-3" style="padding: 20px;">
+                  <h6><i class="fas fa-gem"></i> Our Collections</h6>
+                  <ul class="list-unstyled">
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-necklace"></i> Necklaces</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-ring"></i> Rings</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-cogs"></i> Bracelets</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-ear"></i> Earrings</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-clock"></i> Watches</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-gem"></i> Custom Jewelry</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-diamond"></i> Fine Jewelry</a></li>
+                  </ul>
+              </div>
+              <div class="col-md-3" style="padding: 20px;">
+                  <h5><i class="fas fa-question-circle"></i> Customer Service</h5>
+                  <ul class="list-unstyled">
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-user-circle"></i> My Account</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-shipping-fast"></i> Shipping & Return Policy</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-lock"></i> Privacy Policy</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-cogs"></i> Care Instructions</a></li>
+                  </ul>
+              </div>
+              <div class="col-md-3" style="padding: 20px;">
+                  <h6><i class="fas fa-map-marker-alt"></i> Get in Touch</h6>
+                  <ul class="list-unstyled">
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-building"></i> Company</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-map-marker-alt"></i> New York</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-map-marker-alt"></i> Los Angeles</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-map-marker-alt"></i> Chicago</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-envelope"></i> Email:</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-envelope"></i> contact@jewelrysite.com</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-phone"></i> Contact No:</a></li>
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-phone"></i> +1 123 456 7890</a></li>
+                  </ul>
+              </div>
+              <div class="col-md-3" style="padding: 20px;">
+                  <h6><i class="fas fa-envelope-open"></i> Stay Up to Date</h6>
+                  <ul class="list-unstyled">
+                      <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-paper-plane"></i> Sign up for our Newsletter</a></li>
+                      <br>
+                      <h6><i class="fas fa-share-alt"></i> Follow Us</h6>
+                      <ul class="list-unstyled">
+                          <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-instagram"></i> Instagram</a></li>
+                          <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                          <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-twitter"></i> Twitter</a></li>
+                          <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                      </ul>
+                  </ul>
+              </div>
           </div>
-          <!-- <div class="col-md-3">
-              <h5>FAQs</h5>
-              <ul class="list-unstyled">
-                  <li><a href="" >My Account</a></li>
-                  <li><a href="" >Exchange&Return Policy</a></li>
-                  <li><a href="" >Privacy Policy</a></li>
-                  <li><a href="" >Terms&Conditions</a></li>
-                  <li><a href="" >Sneakers</a></li>
-              </ul>
-          </div> -->
-          <!-- <div class="col-md-3">
-            <h6>Get in Touch</h6>
-        <ul class="list-unstyled">
-            <li><a href="#" >Company</a></li>
-            <li><a href="#" >Erankulam</a></li>
-            <li><a href="#" >Kochi</a></li>
-            <li><a href="#" ></a></li>
-            <li><a href="#" >Email:</a></li>
-            <li><a href="#" >GalleryHub@gmail.com</a></li>
-            <li><a href="#" >Contact no:</a></li>
-            <li><a href="#" >+91 999999999</a></li>
-            <li><a href="#" ></a></li>
-        </ul>
-        </div> -->
-          <!-- <div class="col-md-3">
-              <h6>STAY UP TO DATE</h6>
-              <ul class="list-unstyled">
-                  <li><a href="#">Sign up for Email</a></li>
-                  <br>
-              <h6>EXPLORE</h6> -->
-
-          <!-- </div> -->
       </div>
-  </div>
-  <hr>
-  <br>
-</footer>
+      <hr style="border-top: 2px solid #ddd;">
+      <div style="background-color: #333; color: #fff; text-align: center; padding: 15px 0;">
+          <p style="margin: 0;">&copy; 2025 JewelrySite. All Rights Reserved.</p>
+      </div>
+  </footer>
 </div>
+</div>
+
+<!-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0dlnM+6b9rItc97g6zUl+a+Gy6pQ5Z2v5/RtWgkLQun7dp7r" crossorigin="anonymous"></script>
     

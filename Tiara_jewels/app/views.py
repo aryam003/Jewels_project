@@ -206,6 +206,14 @@ def user_view_bookings(req):
 def about(req):
     return render(req,'user/about.html')
 
+# def search(req):
+#     if req.method == 'POST':
+#         searched = req.POST.get('searched', '')  
+#         results = JewelryType.objects.filter(name__icontains=searched) if searched else []
+#         return render(req, 'user/search.html', {'searched': searched, 'results': results})
+#     else:
+#         return render(req, 'user/search.html', {'searched': '', 'results': []})   
+
 
 #  displaying all Rings
 def r_page(request):
