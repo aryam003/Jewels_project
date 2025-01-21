@@ -27,7 +27,7 @@
 }
 
 .product-info p {
-    padding-top: 6%;
+    /* padding-top: 6%; */
     font-size: 1rem;
     color: #555;
     margin-bottom: 15px;
@@ -43,6 +43,7 @@
     border-radius: 25px;
     transition: all 0.3s ease;
 }
+
 
 
 /* Responsive design for mobile devices */

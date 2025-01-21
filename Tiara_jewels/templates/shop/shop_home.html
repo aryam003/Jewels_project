@@ -34,7 +34,13 @@
                   <li class="nav-item">
                       <a class="nav-link" style="color: rgb(96, 95, 95) " href="logout">Logout</a>   
                   </li>
-                  <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
+                  <!-- <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li> -->
+                  <li class="nav-item">
+                    <form class="d-flex" role="search" action="search_results_url" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_query">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </li>
                   <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
                   <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li>
                  
@@ -65,13 +71,13 @@
     <!-- The slideshow/carousel -->
     <div class="carousel-inner" style="padding-top: 0px;">
         <div class="carousel-item active">
-            <img src="{% static 'image/l2.jpg' %}" alt="Los Angeles" class="d-block" style="width: 100%; height: 460px;">
+            <img src="{% static 'image/cl.png' %}" alt="Los Angeles" class="d-block" style="width: 100%; height: 460px;">
             <div class="carousel-caption">
                 <h5>An enchanting collection of stunning jewelry, where artistry and elegance come together in perfect harmony.</h5>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{% static 'image/t.jpeg' %}" alt="Chicago" class="d-block" style="width:100%;height: 460px;">
+            <img src="{% static 'image/1_1_1.jpg' %}" alt="Chicago" class="d-block" style="width:100%;height: 460px;">
             <div class="carousel-caption">
                 <h5>A radiant collection of gems and precious metals, perfect for those who appreciate true beauty and elegance.</h5>
             </div> 
@@ -95,26 +101,26 @@
 
     <div class="row" style="width: 100%; padding-top: 100px; padding-left: 20px; ">
       <!-- Jewelry Item 1 -->
-      <div class="col-md-3 mb-3">
+      <div class="col-md-3 mb-3 col-6 col-sm-4">
         <div class="card"  >
           <a href="rings"><img src="{% static 'image/r22.webp' %}" class="card-img-top" alt="Jewelry 1" ></a>
         </div>
         <h6 style="padding-left: 41%;">Rings</h6>
       </div>
-      <div class="col-md-3 mb-3">
+      <div class="col-md-3 mb-3 col-6 col-sm-4">
         <div class="card" >
           <a href="necklaces"><img src="{% static 'image/nk2.webp' %}" class="card-img-top" alt="Jewelry 3" ></a>
         </div>
         <h6 style="padding-left: 38%;">Necklace</h6>
       </div>
-      <div class="col-md-3 mb-3">
+      <div class="col-md-3 mb-3 col-6 col-sm-4">
         <div class="card" >
           <a href="earrings"><img src="{% static 'image/e1.webp' %}" class="card-img-top" alt="Jewelry 5"></a>
         </div>
         <h6 style="padding-left: 38%;">Earrings</h6>
       </div>
       <!-- Jewelry Item 6 -->
-      <div class="col-md-3 mb-3" >
+      <div class="col-md-3 mb-3 col-6 col-sm-4" >
         <div class="card" >
           <a href="Bracelet"><img src="{% static 'image/b1.webp' %}" class="card-img-top" alt="Jewelry 6"></a>
         </div>

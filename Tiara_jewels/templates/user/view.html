@@ -12,25 +12,40 @@
     
 </head>
 <body>
-                   <!-- Navbar -->
-  <div class="line" style="background-color: whitesmoke; width: 100%; height: 25px; color: white; font-size: 13px; padding-left: 33%;"></div>
+        <!-- Navbar -->
+        <div class="line" style="background-color: whitesmoke; width: 100%; height: 25px; color: white; font-size: 13px; padding-left: 33%;"></div>
 
-  <nav class="navbar navbar-expand-lg navbar-light " style="background-color:  white; top: 0px; font-family: 'Times New Roman', Times, serif; font-weight: 400px;" >
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="color: rgb(82, 81, 81); font-weight: 800; padding-left: 43%;">TIARA JEWELS</i></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
-                <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
-                <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-  {% comment %} <div class="line" style="background-color: whitesmoke; width: 100%; height: 25px; color: white; font-size: 13px; padding-left: 33%;"></div> {% endcomment %}
+        <nav class="navbar navbar-expand-lg navbar-light " style="background-color:  white; top: 0px; font-family: 'Times New Roman', Times, serif; font-weight: 500px;" >
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#" style="color: rgb(82, 81, 81); font-weight: 800; padding-left: 43%;">TIARA JEWELS</i></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                          <a class="nav-link active" style="color: rgb(92, 92, 92);" aria-current="page" href="user_home">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" style="color: rgb(92, 92, 92);" href="cart_display">Cart</a>  
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" style="color: rgb(92, 92, 92);" href="user_booking">Bookings</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" style="color: rgb(92, 92, 92); " href="about">About Us</a>   
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" style="color: rgb(92, 92, 92); " href="logout">Logout</a>   
+                      </li>
+                      <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
+                      <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
+                      <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+ <div class="line" style="background-color: whitesmoke; width: 100%; height: 25px; color: white; font-size: 13px; padding-left: 33%;"></div>
             
 <div class="container">
     <div class="product-view">
@@ -42,7 +57,7 @@
   
         <!-- Product Information -->
         <div class="col-lg-6 col-md-6 col-sm-12 product-info">
-          <h3>{{ product.name }}</h3>
+          <h4>{{ product.name }}</h4>
           <p><strong>Category:</strong> {{ product.category.name }}</p>
           <p><strong>Weight:</strong> {{ product.weight }} g</p>
           <p><strong>Price:</strong> ${{ product.price }}</p>
@@ -70,7 +85,6 @@
   
   <!-- Bootstrap JS & Popper.js -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  {% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script> {% endcomment %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0dlnM+6b9rItc97g6zUl+a+Gy6pQ5Z2v5/RtWgkLQun7dp7r" crossorigin="anonymous"></script>
  
