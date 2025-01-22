@@ -41,10 +41,18 @@
                           <a class="nav-link" style="color: rgb(92, 92, 92); " href="logout">Logout</a>   
                       </li>
                       <li class="nav-item">
-                        <form class="d-flex" role="search" action="search_results_url" method="GET">
-                            <input class="form-control m" type="search" placeholder="Search" aria-label="Search" name="search_query">
-                            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
-                        </form>
+                        <form class="d-flex" role="search" action="{% url 'search' %}" method="POST">
+                          {% csrf_token %}
+                          <div class="input-group">
+                              <button class="btn " type="submit" style="background-color: white;">
+                                  <i class="bi bi-search"></i>
+                              </button>
+                              <!-- <input class="form-control" type="text" placeholder="Search" aria-label="Search"> -->
+                              <input class="form-control" type="text" placeholder="Search" aria-label="Search"id="search" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="200"
+                              class="form-control me-2" 
+                              aria-label="Search" name="searched">
+                          </div>
+                      </form>
                     </li>
                       <!-- <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li> -->
                       <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>

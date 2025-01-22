@@ -206,13 +206,13 @@ def user_view_bookings(req):
 def about(req):
     return render(req,'user/about.html')
 
-# def search(req):
-#     if req.method == 'POST':
-#         searched = req.POST.get('searched', '')  
-#         results = JewelryType.objects.filter(name__icontains=searched) if searched else []
-#         return render(req, 'user/search.html', {'searched': searched, 'results': results})
-#     else:
-#         return render(req, 'user/search.html', {'searched': '', 'results': []})   
+def search(req):
+    if req.method == 'POST':
+        searched = req.POST.get('searched', '')  
+        results = Jewelry.objects.filter(name__icontains=searched) if searched else []
+        return render(req, 'user/search.html', {'searched': searched, 'results': results})
+    else:
+        return render(req, 'user/search.html', {'searched': '', 'results': []})   
 
 
 #  displaying all Rings
@@ -239,14 +239,3 @@ def b_page(request):
 
 #------------------------------------------------
 
-
-
-
-# displaying the details of a specific piece of jewelry
-# def jewelry_detail(request, jewelry_id):
-#     jewelry = Jewelry.objects.get(id=jewelry_id)
-#     return render(request, 'jewelry/jewelry_detail.html', {'jewelry': jewelry})
-
-# class Card(models.Model):
-#     user=models.ForeignKey(User,on_delete=models.CASCADE)    
-#     jewelry=models.ForeignKey(product,on_delete=models.CASCADE)
