@@ -13,6 +13,7 @@ urlpatterns=[
     path('edit_pro/<id>/', views.edit_pro),
     path('delete_pro/<id>/',views.delete_pro),
     path('booking',views.bookings),
+    
 
     path('rings/', views.ring_page, name='ring_page'),         
     path('necklaces/', views.necklace_page, name='necklace_page'), 
@@ -32,6 +33,9 @@ urlpatterns=[
     path('user_booking',views.user_view_bookings),
     path('about',views.about),
     path('search/', views.search, name='search'),
+    path('buy/<id>/', views.buy_pro, name='buy_pro'),
+    path('address/<id>/', views.address_page, name='address_page'),
+    path('place_order/<id>/', views.place_order, name='place_order'),
     
     path('user_rings/', views.r_page, name='ring_page'),  
     path('user_necklaces/', views.n_page, name='necklace_page'), 

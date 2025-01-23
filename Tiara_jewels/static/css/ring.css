@@ -7,9 +7,6 @@
             
             /* transition: box-shadow 0.3s ease; */
         }
-        /* body{ */
-            /* background-color: #121212; */
-        /* } */
 
         .jewelry-item:hover {
             box-shadow: 4px 4px 8px rgba(146, 145, 145, 0.2);
@@ -41,34 +38,6 @@
         .action-buttons a.btn {
             font-size: 1rem;
         }
-/* 
-        .card {
-            border: none;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          }
-          .card-img-top {
-            max-height: 250px;
-            object-fit: cover;
-          }
-          .card-body {
-            text-align: center;
-          }
-          .card-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-          }
-          .card-text {
-            font-size: 1rem;
-            color: #555;
-          }
-          .card-price {
-            font-size: 1.2rem;
-            color: #007bff;
-            font-weight: bold;
-          } */
-
-              /* Custom CSS for styling */
     .card {
       border: none;
       background-color: white;

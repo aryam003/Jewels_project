@@ -45,39 +45,7 @@
         color: #007bff;
         font-weight: bold;
       }
-/* 
-      footer{
-        display: flex; 
-        width: 100%;
-        height: 600px;
-        background-color: whitesmoke;
-      }
-    
-      footer a{
-      text-decoration: none;
-      color: black;
-      font-size: medium;
-      }
-      footer h6{
-      font-weight: bold;
-      }
-      footer  a:hover{
-      color: black;
-      }
-      footer svg:hover{
-          color: rgb(106, 105, 105);
-      }
-      footer img{
-      padding: 5px;
-      margin-bottom: 5px;
-      }
-      .card-img-top {
-        width: 100%;
-        height: auto;
-      }  */
-    
 
-      /* Search input styling */
 .navbar .form-control {
   max-width: 300px; /* Control the size of the search input */
 }
@@ -86,6 +54,19 @@
 .navbar .btn-outline-success {
   border-radius: 5px;
 }
+  /* Make all carousel images the same height and responsive */
+  .carousel-img {
+    object-fit: cover; 
+    height: 480px;
+    width: 100%;
+  }
+
+  /* Adjust height for smaller screens */
+  @media (max-width: 768px) {
+    .carousel-img {
+      height: 300px; 
+    }
+  }
 
 /* Adjust navbar layout for smaller screens */
 @media (max-width: 768px) {

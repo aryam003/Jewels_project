@@ -1,15 +1,13 @@
-  /* Full page background */
+  /*  background */
   .background {
-    top: 15px;
-    position: relative;
+    /* top: 15px;
+    position: relative; */
     background-image: url('/static/image/r.jpg');
+    height: auto;
     background-size: cover;
     background-position: center;
-    height: 150vh; /* Full viewport height */
-    position: relative;
-    height: 480px;
+    height: 60vh;
 }
-
 /* Button centered over the background */
 .button-container{
     position: absolute;
@@ -17,7 +15,6 @@
     left: 30%;
     transform: translate(-50%, -50%);
     text-align: center;
-    /* color: rgb(20, 20, 154); */
 }
 .button-container{
     top: 200px;
@@ -81,22 +78,66 @@
       }
  /* Search input styling */
 .navbar .form-control {
-  max-width: 300px; /* Control the size of the search input */
+  max-width: 300px; 
 }
 
 /* Search button styling */
 .navbar .btn-outline-success {
   border-radius: 5px;
 }
+  /* Make all carousel images the same height and responsive */
+  .carousel-img {
+    object-fit: cover; 
+    height: 480px;
+    width: 100%;
+  }
+
+  /* Adjust height for smaller screens */
+  @media (max-width: 768px) {
+    .carousel-img {
+      height: 300px; 
+    }
+  }
 
 /* Adjust navbar layout for smaller screens */
 @media (max-width: 768px) {
   .navbar .form-control {
-      max-width: 200px; /* Make the search box smaller on mobile */
+      max-width: 200px; 
   }
 }
 @media (max-width: 975px) {
   .navbar .form-control {
-      max-width: 200px; /* Make the search box smaller on mobile */
+      max-width: 200px; 
   }
 }
+  @media (max-width: 768px) {
+    .responsive-video {
+      /* display: none; */
+      height: 60vh;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .background {
+      height: 50vh;  /* For medium screens like tablets */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .background {
+      height: 40vh;  /* For smaller screens like phones */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .background {
+      height: 30vh;  /* For extra small screens */
+    }
+  }
+  @media (max-width: 768px) {
+    .custom-container {
+      background: none;
+      /* display: block; */
+    }
+  }

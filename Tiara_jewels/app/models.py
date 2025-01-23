@@ -39,3 +39,9 @@ class Buy(models.Model):
 
     def __str__(self):
         return self.name  
+    
+class Address(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    address = models.TextField()
+    phone_number = models.CharField(max_length=15)

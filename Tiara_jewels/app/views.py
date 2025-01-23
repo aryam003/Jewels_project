@@ -192,11 +192,55 @@ def delete_cart(req,id):
 
 def buy_pro(req,id):
     products=Jewelry.objects.get(pk=id)
+    # return redirect('address_page')
+    return render(req,'user/user_dtls.html',{'product':products}) 
+
+    # products=Jewelry.objects.get(pk=id)
+    # user=User.objects.get(username=req.session['user'])
+    # price=products.price
+    # data=Buy.objects.create(user=user,product=products,price=price)
+    # data.save()
+    # return redirect(user_home)
+
+def address_page(req, id):
+    # jewelry = get_object_or_404(Jewelry, id=id)
+    products=Jewelry.objects.get(pk=id)
+    
+    if req.method == 'POST':
+        # Get the address details from the form
+        name = req.POST.get('name')
+        address = req.POST.get('address')
+        phone_number = req.POST.get('phone_number')
+
+        # Create an Address object for the user
+        user_address = Address.objects.create( user=req.user,name=name,address=address,phone_number=phone_number)
+
+        # Create a Buy record for this order
+        price=products.price
+        data=Buy.objects.create(user=req.user,product=products,price=price)
+
+        # buy = Buy.objects.create(user=req.user,product=products,price=.price,address=user_address)
+
+        # Redirect to a page to confirm the order (you can change this as needed)
+        return redirect(user_home)  # Adjust the redirect URL as necessary
+
+    return render(req, 'user/user_dtls.html', {'product':products,'data':data})
+
+def place_order(req, id):
+    products=Jewelry.objects.get(pk=id)
     user=User.objects.get(username=req.session['user'])
     price=products.price
     data=Buy.objects.create(user=user,product=products,price=price)
     data.save()
     return redirect(user_home)
+
+    # Optionally, you can clear the cart after the purchase (if you have one)
+    # Cart.objects.filter(user=user).delete()
+
+    return redirect('user_home')
+
+
+
 
 def user_view_bookings(req):
     user=User.objects.get(username=req.session['user'])
