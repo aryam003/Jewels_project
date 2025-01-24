@@ -114,7 +114,8 @@ def edit_pro(req,id):
 
 def bookings(req):
     bookings=Buy.objects.all()[::-1]
-    return render(req,'shop/booking.html',{'data':bookings})
+    user_addresses = Address.objects.filter(user=req.user) 
+    return render(req,'shop/booking.html',{'data':bookings,'user_addresses': user_addresses})
 
 def delete_pro(req,id):
     data=Jewelry.objects.get(pk=id)
@@ -171,9 +172,9 @@ def view_pro(req,id):
 
 def add_to_cart(req,id):
     products=Jewelry.objects.get(pk=id)
-    print(products)
+    # print(products)
     user=User.objects.get(username=req.session['user'])
-    print(user)
+    # print(user)
     data=Cart.objects.create(user=user,product=products)
     data.save()
     return redirect(cart_display)
@@ -195,49 +196,33 @@ def buy_pro(req,id):
     # return redirect('address_page')
     return render(req,'user/user_dtls.html',{'product':products}) 
 
-    # products=Jewelry.objects.get(pk=id)
-    # user=User.objects.get(username=req.session['user'])
-    # price=products.price
-    # data=Buy.objects.create(user=user,product=products,price=price)
-    # data.save()
-    # return redirect(user_home)
 
 def address_page(req, id):
-    # jewelry = get_object_or_404(Jewelry, id=id)
-    products=Jewelry.objects.get(pk=id)
-    
+    product = Jewelry.objects.get(pk=id)
     if req.method == 'POST':
-        # Get the address details from the form
         name = req.POST.get('name')
         address = req.POST.get('address')
         phone_number = req.POST.get('phone_number')
+        
+        # Save the address
+        user_address = Address.objects.create(user=req.user, name=name, address=address, phone_number=phone_number)
 
-        # Create an Address object for the user
-        user_address = Address.objects.create( user=req.user,name=name,address=address,phone_number=phone_number)
+        # Convert price to integer if needed
+        price = int(product.price)  # Convert the price to an integer before saving
+        # Save the purchase
+        data = Buy.objects.create(user=req.user, product=product, price=price)
 
-        # Create a Buy record for this order
-        price=products.price
-        data=Buy.objects.create(user=req.user,product=products,price=price)
+        return redirect('user_home')  # Adjust the redirect URL as necessary
 
-        # buy = Buy.objects.create(user=req.user,product=products,price=.price,address=user_address)
-
-        # Redirect to a page to confirm the order (you can change this as needed)
-        return redirect(user_home)  # Adjust the redirect URL as necessary
-
-    return render(req, 'user/user_dtls.html', {'product':products,'data':data})
-
+    return render(req, 'user/user_dtls.html', {'product': product})
 def place_order(req, id):
-    products=Jewelry.objects.get(pk=id)
-    user=User.objects.get(username=req.session['user'])
-    price=products.price
-    data=Buy.objects.create(user=user,product=products,price=price)
-    data.save()
-    return redirect(user_home)
+    product = Jewelry.objects.get(pk=id)
+    user = req.user  # Using req.user directly
+    price = int(product.price)  # Convert the price to an integer before saving
+    data = Buy.objects.create(user=user, product=product, price=price)
+    
+    return redirect(user_home)  # Adjust the redirect URL as necessary
 
-    # Optionally, you can clear the cart after the purchase (if you have one)
-    # Cart.objects.filter(user=user).delete()
-
-    return redirect('user_home')
 
 
 

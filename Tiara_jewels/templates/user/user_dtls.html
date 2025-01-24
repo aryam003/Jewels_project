@@ -3,34 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ product.name }} - Jewelry Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/user_dtls.css' %}">
 </head>
 <body>
-    
-    <div class="container my-4">
-        <h2>Place Your Order</h2>
-        <form method="POST">
-            {% csrf_token %}
-            
-            <div class="form-group">
-                <label for="name">Full Name:</label>
-                <input type="text" name="name" id="name" class="form-control" required>
-            </div>
-    
-            <div class="form-group">
-                <label for="address">Address:</label>
-                <textarea name="address" id="address" class="form-control" required></textarea>
-            </div>
-    
-            <div class="form-group">
-                <label for="phone_number">Phone Number:</label>
-                <input type="text" name="phone_number" id="phone_number" class="form-control" required>
-            </div>
-    
-            <button type="submit" class="btn btn-primary btn-block">Place Order</button>
-        </form>
+                  <!-- Navbar -->
+                  <div class="line" style="background-color: whitesmoke; width: 100%; height: 25px; color: white; font-size: 13px; padding-left: 33%;"></div>
+
+                  <nav class="navbar navbar-expand-lg navbar-light " style="background-color:  white; top: 0px; font-family: 'Times New Roman', Times, serif; font-weight: 500px;" >
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#" style="color: rgb(82, 81, 81); font-weight: 800; padding-left: 43%;">TIARA JEWELS</i></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" style="color: rgb(92, 92, 92);" aria-current="page" href="../user_home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: rgb(92, 92, 92);" href="../cart_display">Cart</a>  
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: rgb(92, 92, 92);" href="../user_booking">Bookings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: rgb(92, 92, 92); " href="../about">About Us</a>   
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: rgb(92, 92, 92); " href="../logout">Logout</a>   
+                                </li>
+                                <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
+                                <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
+                                <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+<div class="container">
+    <div class="product-details">
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+
+        <div class="product-info">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+            <p class="price">${{ product.price }}</p>
+
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'address_page' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Buy Now</button>
+                </form>
+            {% else %}
+                <p>Please log in to place an order.</p>
+            {% endif %}
+        </div>
     </div>
-    
-    
+
+    {% if user.is_authenticated %}
+        <div class="address-form">
+            <h2>Enter Your Shipping Address</h2>
+
+            <form method="POST" action="{% url 'address_page' product.id %}">
+                {% csrf_token %}
+                <div>
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div>
+                    <label for="address">Shipping Address</label>
+                    <textarea id="address" name="address" rows="4" required></textarea>
+                </div>
+
+                <div>
+                    <label for="phone_number">Phone Number</label>
+                    <input type="text" id="phone_number" name="phone_number" required>
+                </div>
+
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+    {% endif %}
+
+    {% comment %} <a href="{% url 'user_home' %}" class="back-btn">Back to Home</a> {% endcomment %}
+</div>
+<div class="ftr" style="padding-top: 2%">
+    <footer class="text-dark pt-5 mt-3" style="font-size: 15px; background-color: #f8f9fa; border-top: 3px solid #d1d1d1;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" style="padding: 20px;">
+                    <h6><i class="fas fa-gem"></i> Our Collections</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-necklace"></i> Necklaces</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-ring"></i> Rings</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-cogs"></i> Bracelets</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-ear"></i> Earrings</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-clock"></i> Watches</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-gem"></i> Custom Jewelry</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-diamond"></i> Fine Jewelry</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3" style="padding: 20px;">
+                    <h5><i class="fas fa-question-circle"></i> Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-user-circle"></i> My Account</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-shipping-fast"></i> Shipping & Return Policy</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-lock"></i> Privacy Policy</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-cogs"></i> Care Instructions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3" style="padding: 20px;">
+                    <h6><i class="fas fa-map-marker-alt"></i> Get in Touch</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-building"></i> Company</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-map-marker-alt"></i> New York</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-map-marker-alt"></i> Los Angeles</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-map-marker-alt"></i> Chicago</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-envelope"></i> Email:</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-envelope"></i> contact@jewelrysite.com</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-phone"></i> Contact No:</a></li>
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-phone"></i> +1 123 456 7890</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3" style="padding: 20px;">
+                    <h6><i class="fas fa-envelope-open"></i> Stay Up to Date</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-paper-plane"></i> Sign up for our Newsletter</a></li>
+                        <br>
+                        <h6><i class="fas fa-share-alt"></i> Follow Us</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr style="border-top: 2px solid #ddd;">
+        <div style="background-color: #333; color: #fff; text-align: center; padding: 15px 0;">
+            <p style="margin: 0;">&copy; 2025 JewelrySite. All Rights Reserved.</p>
+        </div>
+    </footer>
+  </div>
+  
+  
+  </div>
 </body>
 </html>

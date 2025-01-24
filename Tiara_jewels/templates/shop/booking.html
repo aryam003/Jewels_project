@@ -23,7 +23,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
-                      <a class="nav-link active" style="color: rgb(92, 92, 92);" aria-current="page" href="">Home</a>
+                      <a class="nav-link active" style="color: rgb(92, 92, 92);" aria-current="page" href="../shop_home">Home</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" style="color: rgb(98, 98, 98)" href="../add_product">Add prouct</a>  
@@ -68,6 +68,19 @@
                         <h5>{{ cart_obj.product.name }}</h5>
                         <p class="price">Price: ${{ cart_obj.price }}</p>
                         <p class="date">Date of Booking: {{ cart_obj.date }}</p>
+                        {% if user_addresses %}
+                        {% for address in user_addresses %}
+                        <div class="user-details">
+                            <h6>Shipping Information</h6>
+                            <p><strong>Name:</strong> {{ address.name }}</p>
+                            <p><strong>Address:</strong> {{ address.address }}</p>
+                            <p><strong>Phone Number:</strong> {{ address.phone_number }}</p>
+                        </div>
+                    {% endfor %}
+                    
+                    {% else %}
+                        <p>No address provided for this user.</p>
+                    {% endif %}
                     </div>
                 </div>
             </div>
