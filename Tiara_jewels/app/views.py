@@ -111,11 +111,19 @@ def edit_pro(req,id):
         return redirect(ring_page)
     return render(req,'shop/edit_pro.html',{'data':pro})
 
-
 def bookings(req):
-    bookings=Buy.objects.all()[::-1]
-    user_addresses = Address.objects.filter(user=req.user) 
-    return render(req,'shop/booking.html',{'data':bookings,'user_addresses': user_addresses})
+    bookings = Buy.objects.all().order_by('-date')  
+
+    user_addresses = Address.objects.filter(user=req.user)
+
+    print(f"User: {req.user}") 
+    print(f"User Addresses: {user_addresses}") 
+    
+    # Return the data to the template
+    return render(req, 'shop/booking.html', {'data': bookings, 'user_addresses': user_addresses})
+
+
+
 
 def delete_pro(req,id):
     data=Jewelry.objects.get(pk=id)
@@ -196,35 +204,43 @@ def buy_pro(req,id):
     # return redirect('address_page')
     return render(req,'user/user_dtls.html',{'product':products}) 
 
-
 def address_page(req, id):
     product = Jewelry.objects.get(pk=id)
     if req.method == 'POST':
         name = req.POST.get('name')
         address = req.POST.get('address')
         phone_number = req.POST.get('phone_number')
+        size = req.POST.get('size', 10)  # If size is provided, use it, otherwise default to 10
         
         # Save the address
-        user_address = Address.objects.create(user=req.user, name=name, address=address, phone_number=phone_number)
+        user_address = Address.objects.create(
+            user=req.user, 
+            name=name, 
+            address=address, 
+            phone_number=phone_number,
+            size=size  
+        )
 
-        # Convert price to integer if needed
-        price = int(product.price)  # Convert the price to an integer before saving
-        # Save the purchase
+        price = int(product.price)  
         data = Buy.objects.create(user=req.user, product=product, price=price)
 
-        return redirect('user_home')  # Adjust the redirect URL as necessary
+        return redirect(user_home) 
 
     return render(req, 'user/user_dtls.html', {'product': product})
+
 def place_order(req, id):
     product = Jewelry.objects.get(pk=id)
-    user = req.user  # Using req.user directly
-    price = int(product.price)  # Convert the price to an integer before saving
-    data = Buy.objects.create(user=user, product=product, price=price)
+    user = req.user 
+    price = int(product.price)  
+    size = req.POST.get('size', 10)  
+    data = Buy.objects.create(
+        user=user, 
+        product=product, 
+        price=price,
+        size=size 
+    )
     
-    return redirect(user_home)  # Adjust the redirect URL as necessary
-
-
-
+    return redirect(user_home)  
 
 
 def user_view_bookings(req):
@@ -232,8 +248,53 @@ def user_view_bookings(req):
     data=Buy.objects.filter(user=user)
     return render(req,'user/view_booking.html',{'data':data})
 
+
 def about(req):
     return render(req,'user/about.html')
+
+
+
+# User Profile Page displaying user details and relevant actions (cart, orders, etc.)
+def user_profile(req):
+    if 'user' in req.session:
+        # Fetch the logged-in user
+        log_user = User.objects.get(username=req.session['user'])
+
+        # Get the user's profile details (name, email, etc.)
+        user_details = {
+            'username': log_user.username,
+            'email': log_user.email,
+            'full_name': log_user.first_name + " " + log_user.last_name,
+        }
+
+        # Get the user's active cart items
+        cart_items = Cart.objects.filter(user=log_user)
+
+        # Get the user's past orders
+        orders = Buy.objects.filter(user=log_user)
+
+        return render(req, 'user/profile.html', {
+            'user_details': user_details,
+            'cart_items': cart_items,
+            'orders': orders
+        })
+    else:
+        return redirect(login)  # Redirect to login page if user is not logged in
+# Edit User Profile
+def edit_profile(req):
+    if 'user' in req.session:
+        user = User.objects.get(username=req.session['user'])
+        
+        if req.method == 'POST':
+            user.first_name = req.POST.get('first_name')
+            user.last_name = req.POST.get('last_name')
+            user.email = req.POST.get('email')
+            user.save()
+            return redirect(user_profile)
+        
+        return render(req, 'user/edit_profile.html', {'user': user})
+    else:
+        return redirect(login)
 
 def search(req):
     if req.method == 'POST':

@@ -45,3 +45,4 @@ class Address(models.Model):
     name = models.CharField(max_length=255)
     address = models.TextField()
     phone_number = models.CharField(max_length=15)
+    size = models.IntegerField(default=10)

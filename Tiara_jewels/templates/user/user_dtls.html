@@ -60,7 +60,6 @@
             {% if user.is_authenticated %}
                 <form method="POST" action="{% url 'address_page' product.id %}">
                     {% csrf_token %}
-                    <button type="submit">Buy Now</button>
                 </form>
             {% else %}
                 <p>Please log in to place an order.</p>
@@ -69,32 +68,38 @@
     </div>
 
     {% if user.is_authenticated %}
-        <div class="address-form">
-            <h2>Enter Your Shipping Address</h2>
+    <div class="address-form">
+        <h2>Enter Your Shipping Address</h2>
 
-            <form method="POST" action="{% url 'address_page' product.id %}">
-                {% csrf_token %}
-                <div>
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
+        <form method="POST" action="{% url 'address_page' product.id %}">
+            {% csrf_token %}
+            <div>
+                <label for="name">Full Name</label> 
+                <input type="text" id="name" name="name" required>
+            </div>
 
-                <div>
-                    <label for="address">Shipping Address</label>
-                    <textarea id="address" name="address" rows="4" required></textarea>
-                </div>
+            <div>
+                <label for="address">Shipping Address</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+            </div>
 
-                <div>
-                    <label for="phone_number">Phone Number</label>
-                    <input type="text" id="phone_number" name="phone_number" required>
-                </div>
+            <div>
+                <label for="phone_number">Phone Number</label>
+                <input type="text" id="phone_number" name="phone_number" required>
+            </div>
 
-                <button type="submit">Place Order</button>
-            </form>
-        </div>
-    {% endif %}
+            <div>
+                <label for="size">Size</label>
+                <input type="number" id="size" name="size" value="10" min="1" required> <!-- Default size is 10 -->
+            </div>
 
-    {% comment %} <a href="{% url 'user_home' %}" class="back-btn">Back to Home</a> {% endcomment %}
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+{% endif %}
+
+
+
 </div>
 <div class="ftr" style="padding-top: 2%">
     <footer class="text-dark pt-5 mt-3" style="font-size: 15px; background-color: #f8f9fa; border-top: 3px solid #d1d1d1;">

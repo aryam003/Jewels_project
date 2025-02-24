@@ -34,9 +34,9 @@
                   <li class="nav-item">
                       <a class="nav-link" style="color: rgb(96, 95, 95) " href="../logout">Logout</a>   
                   </li>
-                  <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
+                  <!-- <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
                   <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
-                  <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li>
+                  <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li> -->
                  
               </ul>
           </div>
@@ -68,25 +68,33 @@
                         <h5>{{ cart_obj.product.name }}</h5>
                         <p class="price">Price: ${{ cart_obj.price }}</p>
                         <p class="date">Date of Booking: {{ cart_obj.date }}</p>
+    
                         {% if user_addresses %}
-                        {% for address in user_addresses %}
                         <div class="user-details">
                             <h6>Shipping Information</h6>
+                            {% for address in user_addresses %}
                             <p><strong>Name:</strong> {{ address.name }}</p>
                             <p><strong>Address:</strong> {{ address.address }}</p>
                             <p><strong>Phone Number:</strong> {{ address.phone_number }}</p>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
-                    
-                    {% else %}
+                        <div class="profile-info">
+                            <h3>Your Profile</h3>
+                            <p><strong>Full Name:</strong> {{ user_details.full_name }}</p>
+                            <p><strong>Email:</strong> {{ user_details.email }}</p>
+                            <a href="{% url 'edit_profile' %}" class="edit-link">Edit Profile</a>
+                        </div>
+                        {% else %}
                         <p>No address provided for this user.</p>
-                    {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+    
+    
 
 
     <div class="ftr" style="padding-top: 2%">

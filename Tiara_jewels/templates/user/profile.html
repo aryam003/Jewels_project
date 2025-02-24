@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 30px;
+        }
+
+        .profile-card h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .profile-card h3 {
+            font-size: 1.5rem;
+            color: #007BFF;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .profile-info, .cart-info, .order-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .profile-info p, .cart-info p, .order-info p {
+            font-size: 1.1rem;
+            margin: 8px 0;
+        }
+
+        .profile-info .edit-link, .cart-info .remove-link {
+            color: #007BFF;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .profile-info .edit-link:hover, .cart-info .remove-link:hover {
+            text-decoration: underline;
+        }
+
+        .cart-info ul, .order-info ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .cart-info li, .order-info li {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cart-info img {
+            border-radius: 6px;
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+
+        .cart-info span, .order-info span {
+            font-weight: bold;
+        }
+
+        .order-info li {
+            background-color: #eef4ff;
+        }
+
+        .order-info p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .order-info li p {
+            margin: 5px 0;
+        }
+
+        .order-info li p:last-child {
+            font-style: italic;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-card {
+                padding: 20px;
+            }
+
+            .profile-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .profile-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .cart-info li, .order-info li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+  
+  <div class="container">
+    <div class="profile-card">
+        <h2>Welcome, {{ user_details.username }}!</h2>
+        
+        <!-- User Info Section -->
+        <div class="profile-info">
+            <h3>Your Profile</h3>
+            <p><strong>Full Name:</strong> {{ user_details.full_name }}</p>
+            <p><strong>Email:</strong> {{ user_details.email }}</p>
+            <a href="{% url 'edit_profile' %}" class="edit-link">Edit Profile</a>
+        </div>
+
+        <!-- Cart Section -->
+        <div class="cart-info">
+            <h3>Your Cart</h3>
+            {% if cart_items %}
+                <ul>
+                    {% for item in cart_items %}
+                        <li>
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            <div>
+                                <p><strong>{{ item.product.name }}</strong></p>
+                                <p>${{ item.product.price }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Your cart is empty.</p>
+            {% endif %}
+        </div>
+
+        <!-- Order History Section -->
+        <div class="order-info">
+            <h3>Your Orders</h3>
+            {% if orders %}
+                <ul>
+                    {% for order in orders %}
+                        <li>
+                            <div>
+                                <p><strong>Order ID:</strong> {{ order.id }}</p>
+                                <p><strong>Product:</strong> {{ order.product.name }}</p>
+                                <p><strong>Price:</strong> ${{ order.price }}</p>
+                                <p><strong>Order Date:</strong> {{ order.created_at }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You have not made any orders yet.</p>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+
+</body>
+</html>

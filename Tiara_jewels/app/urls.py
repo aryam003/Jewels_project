@@ -42,7 +42,8 @@ urlpatterns=[
     path('user_earrings/', views.e_page, name='earrings_page'),  
     path('user_Bracelet/', views.b_page, name='Bracelet_page'), 
 
-
+    path('profile/', views.user_profile, name='user_profile'),
+    path('profile/edit/', views.edit_profile, name='edit_profile'),
 
 #-----------------------------------------------------------------------------------------------------------for jewels
 

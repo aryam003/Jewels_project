@@ -37,32 +37,39 @@
                             <li class="nav-item">
                                 <a class="nav-link" style="color: rgb(92, 92, 92); " href="../logout">Logout</a>   
                             </li>
-                            <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
-                            <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
-                            <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li>
-                        </ul>
+                            
                     </div>
                 </div>
             </nav>
 
-      <div class="container">
-        <div class="row">
-            {% for cart_obj in data %}
-            <div class="col-lg-6 col-md-12 mt-3 product-item" style="text-align: center;">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="{{ cart_obj.product.image.url }}" alt="{{ cart_obj.product.name }}" class="product-img">
-                    </div>
-                    <div class="product-info">
-                        <h5>{{ cart_obj.product.name }}</h5>
-                        <p class="price">Price: ${{ cart_obj.price }}</p>
-                        <p class="date">Date of Booking: {{ cart_obj.date }}</p>
-                    </div>
+            <div class="container">
+                <div class="row">
+                    {% for cart_obj in data %}
+                        <div class="col-lg-6 col-md-12 mt-3 product-item" style="text-align: center;">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="{{ cart_obj.product.image.url }}" alt="{{ cart_obj.product.name }}" class="product-img">
+                                </div>
+                                <div class="product-info">
+                                    <h5>{{ cart_obj.product.name }}</h5>
+                                    <p class="price">Price: ${{ cart_obj.price }}</p>
+                                    <p class="date">Date of Booking: {{ cart_obj.date }}</p>
+            
+                                    {% if cart_obj in recent_bookings %}
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="booking_id" value="{{ cart_obj.id }}">
+                                            <button type="submit" class="btn btn-danger">Delete Booking</button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
-        </div>
-    </div>
+            
     <div class="ftr" style="padding-top: 2%">
         <footer class="text-dark pt-5 mt-3" style="font-size: 15px; background-color: #f8f9fa; border-top: 3px solid #d1d1d1;">
             <div class="container">
