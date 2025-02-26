@@ -9,47 +9,130 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static '/css/ring.css' %}">
- 
+    
+    <!-- Custom Styling -->
+    <style>
+        .navbar {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 800;
+        }
+        .navbar-brand {
+            padding-left: 45%;
+            color: rgb(96, 95, 95);
+        }
+        .jewelry-item img {
+            width: 100%;
+            height: auto;
+        }
+        .action-buttons a {
+            margin: 5px 0;
+        }
+        .action-buttons .btn {
+            color: white;
+            background-color: #007bff;
+        }
+        .action-buttons .btn:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #f8f9fa;
+            border-top: 3px solid #d1d1d1;
+            font-size: 15px;
+        }
+        footer .col-md-3 ul li a {
+            color: #555;
+            text-decoration: none;
+        }
+        footer .col-md-3 ul li a:hover {
+            color: #007bff;
+        }
+        .ftr .container {
+            padding-top: 2%;
+        }
+        .ftr .row .col-md-3 {
+            padding: 20px;
+        }
+        .footer-bottom {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+        }
+        @media (max-width: 768px) {
+            .navbar-brand {
+                padding-left: 20%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="line" style="background-color: whitesmoke; width: 100%; height: 25px; color: white; font-size: 13px; padding-left: 33%;"></div>
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light " style="background-color:  white; top: 0px; font-family: 'Times New Roman', Times, serif; font-weight: 400px;">
-      <div class="container-fluid">
-          <a class="navbar-brand" href="#" style="color: rgb(96, 95, 95); font-weight: 800; padding-left: 45%;"  >TIARA JEWELS</i></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ms-auto">
-                  <!-- <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
-                  <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
-                  <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li> -->
-                 
-              </ul>
-          </div>
-      </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">TIARA JEWELS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    
+                        <li class="nav-item">
+                            <a class="nav-link active" style="color: rgb(92, 92, 92);" aria-current="page" href="../shop_home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: rgb(98, 98, 98)" href="../add_product">Add Jewelry</a>  
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: rgb(82, 82, 82)" href="../booking">Bookings</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" style="color: rgb(92, 92, 92); " href="../about1">About Us</a>   
+                      </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: rgb(96, 95, 95) " href="../logout">Logout</a>   
+                        </li>
+                        <!-- <li class="nav-item">
+                          <form class="d-flex" role="search" action="{% url 'search' %}" method="POST">
+                              {% csrf_token %}
+                              <div class="input-group">
+                                  <button class="btn " type="submit" style="background-color: white;">
+                                      <i class="bi bi-search"></i>
+                                  </button>
+                                  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                  <input class="form-control" type="text" placeholder="Search" aria-label="Search"id="search" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="200"
+                                  class="form-control me-2" 
+                                  aria-label="Search" name="searched">
+                              </div>
+                          </form>
+                      </li>
+                        <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
+                        <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li> -->
+                       
+                    </ul><!-- Add your icons here -->
+                
+            </div>
+        </div>
+    </nav>
+
     <div class="container mt-5">
-        <!-- <h1 class="text-center mb-4" style="color: black;">Rings Collection</h1> -->
-        
-        <div class="row" >
+        <div class="row">
             {% for jewelry in jewelry_items %}
-                <div class="col-12 col-md-3 ">
-                    <div class="jewelry-item" >
-                        <h2>{{ jewelry.name }}</h2>
+                <div class="col-12 col-md-3 mb-4">
+                    <div class="jewelry-item p-3 border rounded">
+                        <h2 class="h5">{{ jewelry.name }}</h2>
                         <p>{{ jewelry.description }}</p>
                         <p><strong>Material:</strong> {{ jewelry.material }}</p>
                         <p><strong>Price:</strong> ${{ jewelry.price }}</p>
                         <p><strong>Weight:</strong> {{ jewelry.weight }} grams</p>
-                        
+
                         {% if jewelry.image %}
                             <img src="{{ jewelry.image.url }}" alt="{{ jewelry.name }}">
                         {% endif %}
-                        
+
                         <div class="action-buttons">
-                            <a href="../edit_pro/{{ jewelry.pk }}" class="btn  btn-sm">Edit</a>
-                            <a href="../delete_pro/{{ jewelry.pk }}" class="btn  btn-sm">Delete</a>
+                            <a href="../edit_pro/{{ jewelry.pk }}" class="btn btn-sm">Edit</a>
+                            <a href="#" onclick="confirmDelete('../delete_pro/{{ jewelry.pk }}'); return false;" class="btn btn-sm">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -57,76 +140,79 @@
         </div>
     </div>
 
-    <div class="ftr" style="padding-top: 2%">
-        <footer class="text-dark pt-5 mt-3" style="font-size: 15px; background-color: #f8f9fa; border-top: 3px solid #d1d1d1;">
+    <!-- Footer -->
+    <div class="ftr">
+        <footer class="text-dark pt-5 mt-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3" style="padding: 20px;">
+                    <div class="col-md-3">
                         <h6><i class="fas fa-gem"></i> Our Collections</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-necklace"></i> Necklaces</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-ring"></i> Rings</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-cogs"></i> Bracelets</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-ear"></i> Earrings</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-clock"></i> Watches</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-gem"></i> Custom Jewelry</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-diamond"></i> Fine Jewelry</a></li>
+                            <li><a href="#"><i class="fas fa-necklace"></i> Necklaces</a></li>
+                            <li><a href="#"><i class="fas fa-ring"></i> Rings</a></li>
+                            <li><a href="#"><i class="fas fa-cogs"></i> Bracelets</a></li>
+                            <li><a href="#"><i class="fas fa-ear"></i> Earrings</a></li>
+                            <li><a href="#"><i class="fas fa-clock"></i> Watches</a></li>
+                            <li><a href="#"><i class="fas fa-gem"></i> Custom Jewelry</a></li>
+                            <li><a href="#"><i class="fas fa-diamond"></i> Fine Jewelry</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3" style="padding: 20px;">
+                    <div class="col-md-3">
                         <h5><i class="fas fa-question-circle"></i> Customer Service</h5>
                         <ul class="list-unstyled">
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-user-circle"></i> My Account</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-shipping-fast"></i> Shipping & Return Policy</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-lock"></i> Privacy Policy</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-cogs"></i> Care Instructions</a></li>
+                            <li><a href="#"><i class="fas fa-user-circle"></i> My Account</a></li>
+                            <li><a href="#"><i class="fas fa-shipping-fast"></i> Shipping & Return Policy</a></li>
+                            <li><a href="#"><i class="fas fa-lock"></i> Privacy Policy</a></li>
+                            <li><a href="#"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+                            <li><a href="#"><i class="fas fa-cogs"></i> Care Instructions</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3" style="padding: 20px;">
+                    <div class="col-md-3">
                         <h6><i class="fas fa-map-marker-alt"></i> Get in Touch</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-building"></i> Company</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-map-marker-alt"></i> New York</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-map-marker-alt"></i> Los Angeles</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-map-marker-alt"></i> Chicago</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-envelope"></i> Email:</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-envelope"></i> contact@jewelrysite.com</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-phone"></i> Contact No:</a></li>
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-phone"></i> +1 123 456 7890</a></li>
+                            <li><a href="#"><i class="fas fa-building"></i> Company</a></li>
+                            <li><a href="#"><i class="fas fa-map-marker-alt"></i> New York</a></li>
+                            <li><a href="#"><i class="fas fa-map-marker-alt"></i> Los Angeles</a></li>
+                            <li><a href="#"><i class="fas fa-map-marker-alt"></i> Chicago</a></li>
+                            <li><a href="#"><i class="fas fa-envelope"></i> contact@jewelrysite.com</a></li>
+                            <li><a href="#"><i class="fas fa-phone"></i> +1 123 456 7890</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3" style="padding: 20px;">
+                    <div class="col-md-3">
                         <h6><i class="fas fa-envelope-open"></i> Stay Up to Date</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#" style="text-decoration: none; color: #555;"><i class="fas fa-paper-plane"></i> Sign up for our Newsletter</a></li>
-                            <br>
+                            <li><a href="#"><i class="fas fa-paper-plane"></i> Sign up for our Newsletter</a></li>
                             <h6><i class="fas fa-share-alt"></i> Follow Us</h6>
                             <ul class="list-unstyled">
-                                <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-instagram"></i> Instagram</a></li>
-                                <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                                <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-twitter"></i> Twitter</a></li>
-                                <li><a href="#" style="text-decoration: none; color: #555;"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                                <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
                             </ul>
                         </ul>
                     </div>
                 </div>
             </div>
             <hr style="border-top: 2px solid #ddd;">
-            <div style="background-color: #333; color: #fff; text-align: center; padding: 15px 0;">
-                <p style="margin: 0;">&copy; 2025 JewelrySite. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 JewelrySite. All Rights Reserved.</p>
             </div>
         </footer>
-      </div>
-      
-      
-      </div>
-    
-    
-    <!-- Bootstrap JS (Optional) -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0dlnM+6b9rItc97g6zUl+a+Gy6pQ5Z2v5/RtWgkLQun7dp7r" crossorigin="anonymous"></script>
+    </div>
 
-    
+    <!-- Bootstrap JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Delete Confirmation Script -->
+    <script>
+        function confirmDelete(url) {
+            if (confirm('Are you sure you want to delete this item? This action cannot be undone.')) {
+                window.location.href = url;
+            }
+        }
+    </script>
+
 </body>
 </html>
+

@@ -26,7 +26,7 @@
                                 <a class="nav-link active" style="color: rgb(92, 92, 92);" aria-current="page" href="user_home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: rgb(92, 92, 92);" href="cart_display">Cart</a>  
+                                <a class="nav-link" style="color: rgb(92, 92, 92);" href="cart_display"><i class="bi bi-cart"></i></a>  
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color: rgb(92, 92, 92);" href="user_booking">Bookings</a>
@@ -37,35 +37,76 @@
                             <li class="nav-item">
                                 <a class="nav-link" style="color: rgb(92, 92, 92); " href="logout">Logout</a>   
                             </li>
-                            <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: rgb(92, 92, 92); " href="profile/">profile</a>   
+                            </li>
+                            <!-- <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
                             <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
-                            <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li>
+                            <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li> -->
                         </ul>
                     </div>
                 </div>
             </nav>
-
-      <div class="container">
-        <div class="row">
-            {% for cart_obj in data %}
-            <div class="col-lg-4 col-md-6 col-sm-12 product-item">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="{{ cart_obj.product.image.url }}" alt="{{ cart_obj.product.name }}">
-                    </div>
-                    <div class="product-info">
-                        <h5>{{ cart_obj.product.name }}</h5>
-                        <p class="price">Price: ${{ cart_obj.product.price }}</p>
-                        <a href="buy_pro/{{ cart_obj.product.pk }}" class="btn btn-buy">Buy now</a>
-                        <a href="../delete_cart/{{ cart_obj.pk }}" class="btn btn-delete">
-                            <i class="bi bi-trash3"></i> Remove
-                        </a>
+            <div class="container">
+                <h2>Your Cart</h2>
+            
+                <!-- Displaying cart items -->
+                <div class="row">
+                    {% if data %}
+                        {% for cart_obj in data %}
+                        <div class="col-lg-4 col-md-6 col-sm-12 product-item">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="{{ cart_obj.product.image.url }}" alt="{{ cart_obj.product.name }}">
+                                </div>
+                                <div class="product-info">
+                                    <h5>{{ cart_obj.product.name }}</h5>
+                                    <p class="price">Price: ${{ cart_obj.product.price }}</p>
+                                    
+                                    <!-- Button to remove item from cart -->
+                                    <a href="../delete_cart/{{ cart_obj.pk }}" class="btn btn-delete" onclick="return confirmDelete(event)">
+                                        <i class="bi bi-trash3"></i> Remove
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Your cart is empty.</p>
+                    {% endif %}
+                </div>
+            
+                <!-- Total price display -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="cart-total">
+                            <h3>Total Price: ${{ total_price }}</h3>  <!-- Display total price -->
+                        </div>
                     </div>
                 </div>
+            
+                <!-- Checkout button -->
+                {% if data %}
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
-            {% endfor %}
-        </div>
-    </div>
+            
+            <script>
+                // Confirm before deleting an item from the cart
+                function confirmDelete(event) {
+                    var confirmation = confirm("Are you sure you want to remove this item from your cart?");
+                    if (!confirmation) {
+                        event.preventDefault(); // Prevent the deletion action if the user cancels
+                    }
+                }
+            </script>
+            
+            
+            
     <div class="ftr" style="padding-top: 2%">
         <footer class="text-dark pt-5 mt-3" style="font-size: 15px; background-color: #f8f9fa; border-top: 3px solid #d1d1d1;">
             <div class="container">

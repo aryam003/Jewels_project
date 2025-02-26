@@ -15,36 +15,33 @@
 <body>
         <!-- Navbar -->
         <div class="line" style="background-color: whitesmoke; width: 100%; height: 25px; color: white; font-size: 13px; padding-left: 33%;"></div>
-
-        <nav class="navbar navbar-expand-lg navbar-light " style="background-color:  white; top: 0px; font-family: 'Times New Roman', Times, serif; font-weight: 500px;" >
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light " style="background-color:  white; top: 0px; font-family: 'Times New Roman', Times, serif; font-weight: 400px;">
           <div class="container-fluid">
-              <a class="navbar-brand" href="#" style="color: rgb(82, 81, 81); font-weight: 800; padding-left: 43%;">TIARA JEWELS</i></a>
+              <a class="navbar-brand" href="#" style="color: rgb(96, 95, 95); font-weight: 800; padding-left: 45%;"  >TIARA JEWELS</i></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav ms-auto">
-                      <li class="nav-item">
-                          <a class="nav-link active" style="color: rgb(92, 92, 92);" aria-current="page" href="user_home">Home</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" style="color: rgb(92, 92, 92);" href="cart_display"><i class="bi bi-cart"></i></a>  
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" style="color: rgb(92, 92, 92);" href="user_booking">Bookings</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" style="color: rgb(92, 92, 92); " href="about">About Us</a>   
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" style="color: rgb(92, 92, 92); " href="logout">Logout</a>   
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" style="color: rgb(92, 92, 92); " href="../profile/">profile</a>   
-                      </li>
-                      <!-- <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
+
+                      <!-- <li class="nav-item">
+                        <form class="d-flex" role="search" action="{% url 'search' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <button class="btn " type="submit" style="background-color: white;">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search"id="search" data-aos="fade-down" data-aos-duration="1500" data-aos-delay="200"
+                                class="form-control me-2" 
+                                aria-label="Search" name="searched">
+                            </div>
+                        </form>
+                    </li>
                       <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
                       <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-cart"></i></li> -->
+                     
                   </ul>
               </div>
           </div>

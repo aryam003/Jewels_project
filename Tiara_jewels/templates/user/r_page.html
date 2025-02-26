@@ -27,7 +27,7 @@
                                 <a class="nav-link active" style="color: rgb(92, 92, 92);" aria-current="page" href="../user_home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="color: rgb(92, 92, 92);" href="../cart_display">Cart</a>  
+                                <a class="nav-link" style="color: rgb(92, 92, 92);" href="../cart_display"><i class="bi bi-cart"></i></a>  
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color: rgb(92, 92, 92);" href="../user_booking">Bookings</a>
@@ -37,6 +37,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color: rgb(92, 92, 92); " href="../logout">Logout</a>   
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: rgb(92, 92, 92); " href="../profile/">profile</a>   
                             </li>
                             <!-- <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-search"></i></li>
                             <li class="nav-link" style="color: rgb(92, 92, 92);"><i class="bi bi-heart"></i></li>
@@ -56,10 +59,12 @@
                         <a href="../view_pro/{{ jewelry.pk }}">
                             <img src="{{ jewelry.image.url }}" class="card-img-top" alt="{{ jewelry.name }}">
                         </a>  
-                        <p class="card-text">{{ jewelry.price }}</p> <!-- Add price here -->
+                       <!-- Add price here -->
 
                     {% endif %}
                 </div>
+                <div class="div">
+                <p class="card-text" style=" font-size: 13px; text-align: center; margin-bottom: 2rem;padding-top: 1rem;"><strong>₹{{ jewelry.price }}</strong> <br>{{ jewelry.name }}</p></div>
             </div>
             {% endfor %}
         </div>

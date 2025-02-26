@@ -26,11 +26,14 @@
                       <a class="nav-link active" style="color: rgb(92, 92, 92);" aria-current="page" href="../shop_home">Home</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" style="color: rgb(98, 98, 98)" href="../add_product">Add prouct</a>  
+                      <a class="nav-link" style="color: rgb(98, 98, 98)" href="../add_product">Add jewelry</a>  
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" style="color: rgb(82, 82, 82)" href="../booking">Bookings</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" style="color: rgb(92, 92, 92); " href="../about1">About Us</a>   
+                </li>
                   <li class="nav-item">
                       <a class="nav-link" style="color: rgb(96, 95, 95) " href="../logout">Logout</a>   
                   </li>
@@ -93,7 +96,62 @@
             {% endfor %}
         </div>
     </div>
-    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Bookings</title>
+</head>
+<body>
+    <div class="container">
+        <h1>User Details</h1>
+        <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        
+        <h2>User Addresses</h2>
+        <ul>
+            {% for address in user_addresses %}
+                <li>
+                    <strong>Name:</strong> {{ address.name }}<br>
+                    <strong>Address:</strong> {{ address.address }}<br>
+                    <strong>Phone Number:</strong> {{ address.phone_number }}<br>
+                    <strong>Size:</strong> {{ address.size }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>User Bookings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in data %}
+                    <tr>
+                        <td>{{ booking.product.name }}</td>
+                        <td>${{ booking.price }}</td>
+                        <td>{{ booking.date }}</td>
+                        <td>
+                            {% for address in user_addresses %}
+                                {% if address.id == booking.address.id %}
+                                    {{ address.name }} - {{ address.address }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
     
 
 

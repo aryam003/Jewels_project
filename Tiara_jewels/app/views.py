@@ -8,6 +8,9 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponse
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+
 # from django.utils import timezone
 # Create your views here.
 
@@ -40,24 +43,57 @@ def shop_logout(req):
     req.session.flush()
     return redirect(shop_login)
 
+
+
 def register(req):
-    if req.method=='POST':
-        name=req.POST['name']
-        email=req.POST['email']
-        password=req.POST['password']
-        send_mail('Eshop registration', 'E_shop account created', settings.EMAIL_HOST_USER, [email])
+    if req.method == 'POST':
+        # Collect user input
+        name = req.POST['name']
+        email = req.POST['email']
+        password = req.POST['password']
+
+        # Validation: Check if fields are empty
+        if not name or not email or not password:
+            messages.error(req, "All fields are required.")
+            return redirect(register)
+
+        # Email validation
         try:
-            data=User.objects.create_user(first_name=name,username=email,email=email,password=password)
-            data.save()
-            return redirect(shop_login)
-        except:
-            messages.warning(req,"user details already exits.")
+            validate_email(email)  # This checks if the email is in the correct format
+        except ValidationError:
+            messages.error(req, "Invalid email format.")
+            return redirect(register)
+
+        # If email already exists in the database
+        if User.objects.filter(email=email).exists():
+            messages.error(req, "This email is already registered.")
+            return redirect(register)
+
+        try:
+            # Create new user
+            user = User.objects.create_user(first_name=name, username=email, email=email, password=password)
+            user.save()
+
+            # Send registration confirmation email
+            send_mail(
+                'Eshop registration',
+                'Your E-shop account has been created successfully.',
+                settings.EMAIL_HOST_USER,  # From email address (configured in settings)
+                [email],  # To email address
+                fail_silently=False
+            )
+
+            messages.success(req, "Registration successful. Please check your email for confirmation.")
+            return redirect(shop_login)  # Change 'shop_login' to the correct view name
+        except Exception as e:
+            # Handle unexpected errors
+            messages.error(req, f"An error occurred: {str(e)}")
             return redirect(register)
     else:
-        return render(req,'register.html')
+        return render(req, 'register.html')
     
-def public(req):
-    return render(req,'public.html')
+# def public(req):
+#     return render(req,'public.html')
 
     
 
@@ -157,7 +193,8 @@ def Bracelet_page(request):
     return render(request, 'shop/ring_page.html', {'jewelry_items': Bracelet })
 
 
-
+def about1(req):
+    return render(req,'shop/about.html')
 
 
 
@@ -188,10 +225,23 @@ def add_to_cart(req,id):
     return redirect(cart_display)
 
     
+# def cart_display(req):
+#     log_user=User.objects.get(username=req.session['user'])
+#     data=Cart.objects.filter(user=log_user)
+#     return render(req,'user/cart_display.html',{'data':data}) 
+
+
 def cart_display(req):
-    log_user=User.objects.get(username=req.session['user'])
-    data=Cart.objects.filter(user=log_user)
-    return render(req,'user/cart_display.html',{'data':data}) 
+    log_user = User.objects.get(username=req.session['user'])
+    
+    # Get all items in the cart for the logged-in user
+    data = Cart.objects.filter(user=log_user)
+    
+    # Calculate the total price by summing up the prices of the related products
+    total_price = sum(cart_item.product.price for cart_item in data)
+    
+    # Pass the data and total_price to the template
+    return render(req, 'user/cart_display.html', {'data': data, 'total_price': total_price})
 
 def delete_cart(req,id):
     data=Cart.objects.get(pk=id)
@@ -203,6 +253,8 @@ def buy_pro(req,id):
     products=Jewelry.objects.get(pk=id)
     # return redirect('address_page')
     return render(req,'user/user_dtls.html',{'product':products}) 
+
+
 
 def address_page(req, id):
     product = Jewelry.objects.get(pk=id)
@@ -265,6 +317,7 @@ def user_profile(req):
             'username': log_user.username,
             'email': log_user.email,
             'full_name': log_user.first_name + " " + log_user.last_name,
+            # 'ph_no':log_user.
         }
 
         # Get the user's active cart items
@@ -328,4 +381,39 @@ def b_page(request):
 
 
 #------------------------------------------------
+
+
+
+
+
+def checkout(req):
+    log_user = User.objects.get(username=req.session['user'])
+    
+    # Retrieve the cart items for the logged-in user
+    cart_items = Cart.objects.filter(user=log_user)
+    
+    if req.method == 'POST':
+        # Handle the purchase (checkout) logic
+        # Example: Create a Buy entry for each cart item
+        address = Address.objects.get(user=log_user)  # Get the user's address from Address model
+        
+        # Loop over each cart item and create a Buy object
+        for cart_item in cart_items:
+            Buy.objects.create(
+                user=log_user,
+                product=cart_item.product,
+                price=cart_item.product.price,
+            )
+        
+        # After purchase, clear the user's cart
+        cart_items.delete()
+        
+        # Redirect to the "Order Confirmation" or any other page
+        return redirect(cart_display)
+
+    # If GET request, just show the checkout page
+    return render(req, 'user/checkout.html', {'cart_items': cart_items})
+
+# def order_confirmation(req):
+#     return render(req, 'user/order_confirmation.html')
 
