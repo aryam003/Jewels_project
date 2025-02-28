@@ -73,8 +73,8 @@
     {% if user.is_authenticated %}
     <div class="address-form">
         <h2>Enter Your Shipping Address</h2>
-
-        <form method="POST" action="{% url 'address_page' product.id %}">
+        <!-- action="{% url 'address_page' product.id %}" -->
+        <form method="POST" >
             {% csrf_token %}
             <div>
                 <label for="name">Full Name</label> 

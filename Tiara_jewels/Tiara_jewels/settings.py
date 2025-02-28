@@ -134,3 +134,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tiarajewels7@gmail.com'
 EMAIL_HOST_PASSWORD = 'eeqq rwhe ajbd gxle'
+
+
+RAZORPAY_KEY_ID = 'rzp_test_iQCgzTTcAqZIFb' 
+RAZORPAY_KEY_SECRET = 'FhHXvu1iivXK0Q9JEjGvL5Hd'

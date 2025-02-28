@@ -45,7 +45,11 @@ urlpatterns=[
 
     path('profile/', views.user_profile, name='user_profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
-
+    path('order_payment', views.order_payment, name='order_payment'),
+    # path('order_payment', views.order_payment, name='order_payment'),
+    path('pay', views.pay, name='pay'),
+     
+    path('callback/', views.callback, name='callback'),
 #-----------------------------------------------------------------------------------------------------------for jewels
 
     path('checkout/', views.checkout, name='checkout'),
