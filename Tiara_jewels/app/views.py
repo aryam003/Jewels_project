@@ -164,7 +164,20 @@ def bookings(req):
     # Return the data to the template
     return render(req, 'shop/booking.html', {'data': bookings, 'user_addresses': user_addresses})
 
+def bookings(request):
+    # Fetching all data for the tables
+    addresses = Address.objects.all()
+    orders = Order.objects.all()
+    buys = Buy.objects.all()
+    jewelry = Jewelry.objects.all()
 
+    # Passing data to template
+    return render(request, 'shop/booking.html', {
+        'addresses': addresses,
+        'orders': orders,
+        'buys': buys,
+        'jewelry': jewelry,
+    })
 
 
 def delete_pro(req,id):
@@ -201,6 +214,9 @@ def Bracelet_page(request):
 
 def about1(req):
     return render(req,'shop/about.html')
+
+
+
 
 
 
@@ -522,4 +538,31 @@ def checkout(req):
 
 # def order_confirmation(req):
 #     return render(req, 'user/order_confirmation.html')
+
+
+
+def confirm_order(req, order_id):
+    order = get_object_or_404(Buy, pk=order_id)
+    
+    if not order.is_confirmed:  # Avoid unnecessary updates
+        order.is_confirmed = True
+        order.save()
+
+        # Email details
+        subject = "Order Confirmation"
+        message = f"Dear {order.user.first_name},\n\nYour order ({order.product.name}) has been confirmed. Thank you for shopping with us!\n\nBest regards,\nTiara jewels Team"
+        recipient_email = order.user.email  
+
+        send_mail(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                [recipient_email],
+                fail_silently=False,
+            )
+
+          
+
+    return redirect(bookings)
+
 

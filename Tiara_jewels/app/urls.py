@@ -22,6 +22,7 @@ urlpatterns=[
     path('about1',views.about1),
     
     # path('jewelry/<int:jewelry_id>/', views.jewelry_detail, name='jewelry_detail'),
+    path('confirm_order/<order_id>',views.confirm_order, name='confirm_order'),
 
 #---------------------------------------------------------------------------------------------------------for user
 
