@@ -17,7 +17,8 @@ import razorpay
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-
+from django.core.exceptions import ValidationError
+from django.core.validators import EmailValidator
 # from django.utils import timezone
 # Create your views here.
 
@@ -54,48 +55,49 @@ def shop_logout(req):
 
 def register(req):
     if req.method == 'POST':
-        # Collect user input
         name = req.POST['name']
         email = req.POST['email']
         password = req.POST['password']
-
-        # Validation: Check if fields are empty
+        
         if not name or not email or not password:
-            messages.error(req, "All fields are required.")
+            messages.warning(req, "All fields are required.")
             return redirect(register)
-
-        # Email validation
+        
         try:
-            validate_email(email)  # This checks if the email is in the correct format
+            EmailValidator()(email)
         except ValidationError:
-            messages.error(req, "Invalid email format.")
+            messages.warning(req, "Please enter a valid email address.")
+            return redirect(register)
+        
+        if len(password) < 8:
+            messages.warning(req, "Password must be at least 8 characters long.")
             return redirect(register)
 
-        # If email already exists in the database
         if User.objects.filter(email=email).exists():
-            messages.error(req, "This email is already registered.")
+            messages.warning(req, "User with this email already exists.")
             return redirect(register)
 
         try:
-            # Create new user
-            user = User.objects.create_user(first_name=name, username=email, email=email, password=password)
-            user.save()
+            # Create the user
+            data = User.objects.create_user(first_name=name, username=email, email=email, password=password)
+            data.save()
 
-            # Send registration confirmation email
-            send_mail(
-                'Eshop registration',
-                'Your E-shop account has been created successfully.',
-                settings.EMAIL_HOST_USER,  # From email address (configured in settings)
-                [email],  # To email address
-                fail_silently=False
-            )
+            # Send confirmation email
+            subject = 'Registration Successful'
+            message = f'Hello {name},\n\nThank you for registering on our platform.\n\nBest regards,\nYour Company Name'
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = [email]
+            
+            send_mail(subject, message, from_email, recipient_list)
 
-            messages.success(req, "Registration successful. Please check your email for confirmation.")
-            return redirect(shop_login)  # Change 'shop_login' to the correct view name
+            messages.success(req, "Registration successful! A confirmation email has been sent.")
+            return redirect(shop_login)  # Assuming shop_login is the login view
+
         except Exception as e:
-            # Handle unexpected errors
-            messages.error(req, f"An error occurred: {str(e)}")
+            # Catch unexpected errors
+            messages.warning(req, f"Error: {str(e)}")
             return redirect(register)
+
     else:
         return render(req, 'register.html')
     
@@ -247,15 +249,14 @@ def delete_cart(req,id):
     return redirect(cart_display)   
 
 
-def buy_pro(req,id):
-    products=Jewelry.objects.get(pk=id)
-    return redirect(address_page, id=id)
+# def buy_pro(req,id):
+#     products=Jewelry.objects.get(pk=id)
+    # return redirect(address_page, id=id)
     # return render(req,'user/user_dtls.html',{'product':products}) 
 
 def buy_pro(req, id):
-    # Fetching the product object
     product = Jewelry.objects.get(pk=id)
-    return redirect(address_page, id=id)  # Redirect to the address page
+    return redirect(address_page, id=id)  
 
 
 def address_page(req, id):
@@ -267,7 +268,7 @@ def address_page(req, id):
         name = req.POST.get('name')
         address = req.POST.get('address')
         phone_number = req.POST.get('phone_number')
-        size = req.POST.get('size', 10)  # Default to 10 if size isn't provided
+        size = req.POST.get('size', 10) 
         
         if user_address:
             user_address.name = name
@@ -280,7 +281,7 @@ def address_page(req, id):
         req.session['product'] = id
         req.session['size'] = size
         
-        return redirect('order_payment')  # Proceed to payment page
+        return redirect('order_payment')  
 
     return render(req, 'user/user_dtls.html', {'product': product, 'user_address': user_address})
 
@@ -333,7 +334,6 @@ def pay(req):
     if req.method == 'GET':
         user_address = Address.objects.filter(user=user).order_by('-id').first()
 
-        # Create a Buy record linking user, product, address, and order
         data = Buy.objects.create(
             user=user,
             product=product,
@@ -383,18 +383,18 @@ def callback(request):
 def place_order(req, id):
     product = Jewelry.objects.get(pk=id)
     user = req.user
-    size = req.POST.get('size', 10)  # Default to 10 if not provided
+    size = req.POST.get('size', 10)  
     data = Buy.objects.create(
         user=user, 
         product=product, 
         price=product.price,
-        quantity=1,  # You can handle quantity as needed
-        address=None,  # Optional: handle user address if required
-        is_confirmed=False,  # Default is false until confirmed
+        quantity=1,  
+        address=None,  
+        is_confirmed=False,
     )
     data.save()
 
-    return redirect(user_home)  # Redirect to the user home or appropriate page
+    return redirect(user_home) 
 
 
 
