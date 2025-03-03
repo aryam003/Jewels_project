@@ -85,15 +85,13 @@
                     </div>
                 </div>
             
-                <!-- Checkout button -->
-                {% if data %}
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
+        <!-- Button to navigate to the address page -->
+                <div class="text-center mt-4">
+                    <a href="{% url 'cart_address_page' %}" class="btn btn-primary">
+                        Go to Address Page
+                    </a>
+                </div>
+            
             
             <script>
                 // Confirm before deleting an item from the cart

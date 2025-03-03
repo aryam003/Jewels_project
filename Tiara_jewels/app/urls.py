@@ -54,5 +54,20 @@ urlpatterns=[
 #-----------------------------------------------------------------------------------------------------------for jewels
 
     path('checkout/', views.checkout, name='checkout'),
-
+    path('cart/address/', views.cart_address_page, name='cart_address_page'),
+    
+    # Route to the order payment page (step 2)
+    path('order/payment2/', views.order_payment2, name='order_payment2'),
+    
+    # Route to handle the payment confirmation callback
+    path('callback2/', views.callback2, name='callback2'),
+    
+    # Route to process the payment and finalize the order (final step after payment)
+    path('pay2/', views.pay2, name='pay2'),
+    
+    # Route to redirect to the user's cart page (if required)
+    # path('cart/display/', views.cart_display, name='cart_display'),  # Example path for cart display, assuming you have it defined
+    
+    # Route for the bookings page (assuming you want a route for showing bookings)
+    path('bookings/', views.bookings, name='bookings'),
 ]
