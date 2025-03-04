@@ -70,4 +70,5 @@ urlpatterns=[
     
     # Route for the bookings page (assuming you want a route for showing bookings)
     path('bookings/', views.bookings, name='bookings'),
+    path('search_results/', views.search_results, name='search_results'), 
 ]

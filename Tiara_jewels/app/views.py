@@ -715,3 +715,15 @@ def callback2(request):
         order.save()
 
         return redirect(pay2)
+
+def search_results(request):
+    query = request.GET.get('query', '')  # Get the search query
+    if query:
+        jewelry_items = Jewelry.objects.filter(name__icontains=query)  # Filter jewelry items by name
+        results = [
+            {'pk': item.pk, 'name': item.name, 'price': item.price} for item in jewelry_items
+        ]
+    else:
+        results = []
+
+    return JsonResponse({'jewelry_items': results})
