@@ -65,10 +65,7 @@ urlpatterns=[
     # Route to process the payment and finalize the order (final step after payment)
     path('pay2/', views.pay2, name='pay2'),
     
-    # Route to redirect to the user's cart page (if required)
-    # path('cart/display/', views.cart_display, name='cart_display'),  # Example path for cart display, assuming you have it defined
-    
-    # Route for the bookings page (assuming you want a route for showing bookings)
+
     path('bookings/', views.bookings, name='bookings'),
     path('search_results/', views.search_results, name='search_results'), 
 ]
